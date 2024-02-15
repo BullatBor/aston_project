@@ -1,13 +1,9 @@
-import { combineReducers } from 'redux'
-import { createStore } from '@reduxjs/toolkit'
+import { combineReducers } from "redux";
+import { createStore } from "@reduxjs/toolkit";
 
-
-const initialState = {}
+const initialState = {};
 
 // Add firebase to reducers
-const rootReducer = combineReducers({
+const rootReducer = combineReducers({});
 
-})
-
-
-export const store = createStore(rootReducer, initialState)
+export const store = createStore(rootReducer, initialState);
