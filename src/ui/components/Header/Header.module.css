@@ -1,0 +1,32 @@
+.header {
+  height: 60px;
+  background-color: beige;
+  padding: 0 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.auth {
+  display: flex;
+  gap: 12px;
+}
+
+.authLink {
+  cursor: pointer;
+}
+
+.authLink:hover {
+  color: blueviolet;
+}
+
+.leftPart {
+  display: flex;
+  gap: 120px;
+  height: 100%;
+  align-items: center;
+}
