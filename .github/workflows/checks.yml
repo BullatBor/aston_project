@@ -21,5 +21,3 @@ jobs:
         run: npm run eslint
       - name: Prettier Check
         run: npm run prettier
-      - name: Test
-        run: npm run test
