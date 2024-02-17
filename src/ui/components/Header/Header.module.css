@@ -16,11 +16,13 @@
   gap: 12px;
 }
 
-.authLink {
+.authLink a {
   cursor: pointer;
+  text-decoration: none;
+  color: black;
 }
 
-.authLink:hover {
+.authLink a:hover {
   color: blueviolet;
 }
 
