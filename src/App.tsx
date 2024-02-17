@@ -4,6 +4,9 @@ import { Header } from "./ui/components/Header/Header";
 import { SignIn } from "./pages/SignIn/SignIn";
 import { SignUp } from "./pages/SignUp/SignUp";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { MainPage } from "./pages/MainPage/MainPage";
+import { Favorites } from "./pages/Favorites/Favorites";
+import { UserHistory } from "./pages/History/UserHistory";
 
 function App() {
   return (
@@ -12,9 +15,11 @@ function App() {
         <Header />
         <div className="pages">
           <Routes>
-            <Route path="*" element={<SignIn />} />
+            <Route path="*" element={<MainPage />} />
             <Route path="signIn" element={<SignIn />} />
             <Route path="signUp" element={<SignUp />} />
+            <Route path="favorites" element={<Favorites />} />
+            <Route path="history" element={<UserHistory />} />
           </Routes>
         </div>
       </BrowserRouter>
