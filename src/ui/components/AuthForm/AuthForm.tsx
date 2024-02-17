@@ -26,7 +26,7 @@ export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
       <form onSubmit={formik.handleSubmit} className={s.form}>
         <div className={s.inputs}>
           <div className={s.element}>
-            <span>Email</span>
+            <span>Почта</span>
             <Input
               name="email"
               type="email"
@@ -36,7 +36,7 @@ export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
             />
           </div>
           <div className={s.element}>
-            <span>Password</span>
+            <span>Пароль</span>
             <Input
               name="password"
               type="password"

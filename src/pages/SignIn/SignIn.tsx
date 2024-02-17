@@ -1,5 +1,5 @@
 import React from "react";
-import { AuthForm } from "../ui/components/AuthForm/AuthForm";
+import { AuthForm } from "../../ui/components/AuthForm/AuthForm";
 import s from "./signIn.module.css";
 
 export const SignIn = () => {
