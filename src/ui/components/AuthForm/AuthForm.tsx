@@ -11,8 +11,8 @@ interface AuthFormProps {
 export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
   const formik = useFormik({
     initialValues: {
-      email: "segseg",
-      password: "ssg",
+      email: "",
+      password: "",
     },
     onSubmit: (values) => {
       onSubmit(values.email, values.password);
