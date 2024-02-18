@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { MainPage } from "./pages/MainPage/MainPage";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { UserHistory } from "./pages/History/UserHistory";
+import { SignIn } from "./pages/SignIn/SignIn";
 
 function App() {
   return (
