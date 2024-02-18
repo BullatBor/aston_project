@@ -1,7 +1,8 @@
-import { useFormik } from "formik";
+import { Field, Form, Formik } from "formik";
 import React from "react";
-import { Input } from "../../elements/Input/Input";
 import s from "./authForm.module.css";
+import cn from "classnames";
+import * as Yup from "yup";
 
 interface AuthFormProps {
   headerTitle: string;
@@ -9,44 +10,64 @@ interface AuthFormProps {
 }
 
 export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      password: "",
-    },
-    onSubmit: (values) => {
-      onSubmit(values.email, values.password);
-    },
+  const SignupSchema = Yup.object().shape({
+    email: Yup.string().email("Неверный email").required("Обязательное поле"),
+    password: Yup.string().required("Обязательное поле"),
   });
   return (
     <div className={s.main}>
       <div className={s.headerTitle}>
         <span>{headerTitle}</span>
       </div>
-      <form onSubmit={formik.handleSubmit} className={s.form}>
-        <div className={s.inputs}>
-          <div className={s.element}>
-            <span>Почта</span>
-            <Input
-              name="email"
-              type="email"
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              placeholder={"email"}
-            />
-          </div>
-          <div className={s.element}>
-            <span>Пароль</span>
-            <Input
-              name="password"
-              type="password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              placeholder={"password"}
-            />
-          </div>
-        </div>
-      </form>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        validationSchema={SignupSchema}
+        onSubmit={(values) => {
+          onSubmit(values.email, values.password);
+        }}
+      >
+        {({ errors, touched }) => (
+          <Form className={s.form}>
+            <div className={s.inputs}>
+              <div className={s.element}>
+                <span>Почта</span>
+                <div className={s.inputBlock}>
+                  <Field
+                    name="email"
+                    type="email"
+                    placeholder="email"
+                    className={cn(s.input, {
+                      [s.error]: errors.email && touched.email,
+                    })}
+                  />
+                  {errors.email && touched.email ? (
+                    <div className={s.errorText}>{errors.email}</div>
+                  ) : null}
+                </div>
+              </div>
+              <div className={s.element}>
+                <span>Пароль</span>
+                <div className={s.inputBlock}>
+                  <Field
+                    name="password"
+                    type="password"
+                    placeholder="password"
+                    className={cn(s.input, {
+                      [s.error]: errors.password && touched.password,
+                    })}
+                  />
+                  {errors.password && touched.password ? (
+                    <div className={s.errorText}>{errors.password}</div>
+                  ) : null}
+                </div>
+              </div>
+            </div>
+          </Form>
+        )}
+      </Formik>
     </div>
   );
 };
