@@ -3,14 +3,14 @@ import { useSelector } from "react-redux";
 import { isAuth } from "../store/auth/authSlice";
 
 interface withAuthProps {
-  Component: JSX.Element
-  UnAuthorizedComponent: JSX.Element,
+  Component: JSX.Element;
+  UnAuthorizedComponent: JSX.Element;
 }
 
 const withAuthorization = ({
   Component,
-  UnAuthorizedComponent}: withAuthProps
-) => {
+  UnAuthorizedComponent,
+}: withAuthProps) => {
   const AuthorizationComponent = () => {
     const isLoggedIn = useSelector(isAuth);
 
