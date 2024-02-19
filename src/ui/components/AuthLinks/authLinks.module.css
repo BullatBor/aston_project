@@ -1,0 +1,11 @@
+@import url("../../../assets/styles/colors.css");
+
+.authLink a {
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.authLink a:hover {
+  color: blueviolet;
+}
