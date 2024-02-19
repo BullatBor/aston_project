@@ -7,6 +7,7 @@ import { MainPage } from "./pages/MainPage/MainPage";
 import { Favorites } from "./pages/Favorites/Favorites";
 import { UserHistory } from "./pages/History/UserHistory";
 import { SignIn } from "./pages/SignIn/SignIn";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="favorites" element={<Favorites />} />
             <Route path="history" element={<UserHistory />} />
           </Routes>
+          <Toaster position="top-center" reverseOrder={false} />
         </div>
       </BrowserRouter>
     </div>

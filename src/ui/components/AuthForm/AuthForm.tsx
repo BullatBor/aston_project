@@ -3,6 +3,10 @@ import React from "react";
 import s from "./authForm.module.css";
 import cn from "classnames";
 import * as Yup from "yup";
+import { Button } from "../../elements/Button/Button";
+import { useSelector } from "react-redux";
+import { isLoading } from "../../../store/auth/authSlice";
+import Preloader from "../../elements/Preloader/Preloader";
 
 interface AuthFormProps {
   headerTitle: string;
@@ -10,9 +14,13 @@ interface AuthFormProps {
 }
 
 export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
+  const isLoad = useSelector(isLoading);
+
   const SignupSchema = Yup.object().shape({
     email: Yup.string().email("Неверный email").required("Обязательное поле"),
-    password: Yup.string().required("Обязательное поле"),
+    password: Yup.string()
+      .min(6, "Длина пароля 6 символов")
+      .required("Обязательное поле"),
   });
   return (
     <div className={s.main}>
@@ -64,6 +72,11 @@ export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
                   ) : null}
                 </div>
               </div>
+            </div>
+            <div className={s.submit}>
+              <Button type="submit" variant="green" disabled={isLoad}>
+                {isLoad ? <Preloader /> : headerTitle}
+              </Button>
             </div>
           </Form>
         )}
