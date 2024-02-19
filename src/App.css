@@ -1,7 +1,7 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* Задаем высоту 100% высоты видимой области */
+  height: 100vh;
 }
 
 .pages {
