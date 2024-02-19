@@ -10,9 +10,9 @@ export const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const onSubmitRegistr = async (email: string, password: string) => {
+    dispatch(setIsLoading(true));
     const user = await fireBaseRegister(email, password);
     if (user) {
-      dispatch(setIsLoading(true));
       dispatch(setUser(user));
       dispatch(setIsLoading(false));
       navigate("/");
