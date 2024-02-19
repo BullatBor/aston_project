@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <div className={s.header}>
       <div className={s.leftPart}>
-        <Link to={""}>
+        <Link to={"*"}>
           <div className={s.logo}>Logo</div>
         </Link>
         <Input />

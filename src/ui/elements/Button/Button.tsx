@@ -7,6 +7,8 @@ interface InputProps {
   onClick?: () => void;
   className?: string;
   variant: "green" | "red" | "blue";
+  type?: "button" | "submit" | "reset" | undefined;
+  disabled?: boolean;
 }
 
 export const Button = ({
@@ -14,11 +16,15 @@ export const Button = ({
   onClick,
   className,
   variant,
+  type = undefined,
+  disabled = false,
 }: InputProps) => {
   return (
     <div className={s.buttonContainer}>
       <button
+        type={type}
         onClick={onClick}
+        disabled={disabled}
         className={cn(s.button, className, {
           [s.green]: variant === "green",
           [s.red]: variant === "red",
