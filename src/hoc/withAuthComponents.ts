@@ -4,17 +4,16 @@ import { isAuth } from "../store/auth/authSlice";
 
 interface withAuthProps {
   Component: JSX.Element;
-  UnAuthorizedComponent: JSX.Element;
+  UnauthorizedComponent: JSX.Element;
 }
 
 const withAuthorization = ({
-  Component,
-  UnAuthorizedComponent,
+  Component, UnauthorizedComponent
 }: withAuthProps) => {
   const AuthorizationComponent = () => {
     const isLoggedIn = useSelector(isAuth);
 
-    return isLoggedIn ? Component : UnAuthorizedComponent;
+    return isLoggedIn ? Component : UnauthorizedComponent;
   };
 
   return AuthorizationComponent;

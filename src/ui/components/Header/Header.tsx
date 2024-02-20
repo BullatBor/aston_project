@@ -7,7 +7,10 @@ import { AuthLinks } from "../AuthLinks/AuthLinks";
 import { AuthButtons } from "../AuthButtons/AuthButtons";
 
 export const Header = () => {
-  const AuthComponents = withAuthorization(<AuthButtons />, <AuthLinks />);
+  const AuthComponents = withAuthorization({
+    Component: AuthButtons(),
+    UnauthorizedComponent: AuthLinks(),
+  });
   const SearchInput = withAuthorization(<Input placeholder="Поиск" />, <></>);
   return (
     <div className={s.header}>
