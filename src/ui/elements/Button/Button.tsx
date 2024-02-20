@@ -3,7 +3,7 @@ import cn from "classnames";
 import s from "./button.module.css";
 import PropTypes from "prop-types";
 
-interface InputProps {
+interface ButtonProps {
   children?: React.ReactNode;
   onClick?: () => void;
   className?: string;
@@ -19,7 +19,7 @@ const Button = ({
   variant,
   type = undefined,
   disabled = false,
-}: InputProps) => {
+}: ButtonProps) => {
   return (
     <div className={s.buttonContainer}>
       <button
