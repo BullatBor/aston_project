@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./authButtons.module.css";
-import { Button } from "../../elements/Button/Button";
+import Button from "../../elements/Button/Button";
 import { fireBaseLogout } from "../../../services/firebaseAuth";
 import { useDispatch, useSelector } from "react-redux";
 import { isLoading, logout, setIsLoading } from "../../../store/auth/authSlice";

@@ -1,7 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -33,5 +33,5 @@ export function fireBaseLogin(email: string, password: string) {
 }
 
 export function fireBaseLogout() {
-  return signOut(auth)
+  return signOut(auth);
 }

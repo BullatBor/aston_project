@@ -8,7 +8,8 @@ interface withAuthProps {
 }
 
 const withAuthorization = ({
-  Component, UnauthorizedComponent
+  Component,
+  UnauthorizedComponent,
 }: withAuthProps) => {
   const AuthorizationComponent = () => {
     const isLoggedIn = useSelector(isAuth);

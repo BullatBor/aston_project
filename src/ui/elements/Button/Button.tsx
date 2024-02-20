@@ -1,6 +1,7 @@
 import React from "react";
 import cn from "classnames";
 import s from "./button.module.css";
+import PropTypes from "prop-types";
 
 interface InputProps {
   children?: React.ReactNode;
@@ -11,7 +12,7 @@ interface InputProps {
   disabled?: boolean;
 }
 
-export const Button = ({
+const Button = ({
   children,
   onClick,
   className,
@@ -36,3 +37,19 @@ export const Button = ({
     </div>
   );
 };
+
+Button.propTypes = {
+  children: PropTypes.node,
+  onClick: PropTypes.func.isRequired,
+  className: PropTypes.string,
+  variant: PropTypes.oneOf(["green", "red", "blue"]).isRequired,
+  type: PropTypes.oneOf(["button", "submit", "reset", undefined]),
+  disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+  type: undefined,
+  disabled: false,
+};
+
+export default Button;

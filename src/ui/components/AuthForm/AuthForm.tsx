@@ -3,17 +3,17 @@ import React from "react";
 import s from "./authForm.module.css";
 import cn from "classnames";
 import * as Yup from "yup";
-import { Button } from "../../elements/Button/Button";
+import Button from "../../elements/Button/Button";
 import { useSelector } from "react-redux";
 import { isLoading } from "../../../store/auth/authSlice";
 import Preloader from "../../elements/Preloader/Preloader";
+import PropTypes from "prop-types";
 
 interface AuthFormProps {
   headerTitle: string;
   onSubmit: (email: string, password: string) => void;
 }
-
-export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
+const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
   const isLoad = useSelector(isLoading);
 
   const SignupSchema = Yup.object().shape({
@@ -84,3 +84,9 @@ export const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
     </div>
   );
 };
+
+AuthForm.propTypes = {
+  headerTitle: PropTypes.string,
+  onSubmit: PropTypes.func,
+};
+export default AuthForm;

@@ -1,11 +1,11 @@
 import React from "react";
 import cn from "classnames";
-
+import PropTypes from "prop-types";
 import { TPreloaderProps } from "./Preloader.types";
 
 import styles from "./Preloader.module.css";
 
-export const Preloader: React.FC<TPreloaderProps> = ({
+const Preloader: React.FC<TPreloaderProps> = ({
   width = 20,
   className = "",
 }): JSX.Element => {
@@ -36,6 +36,16 @@ export const Preloader: React.FC<TPreloaderProps> = ({
       </svg>
     </div>
   );
+};
+
+Preloader.propTypes = {
+  width: PropTypes.number,
+  className: PropTypes.string,
+};
+
+Preloader.defaultProps = {
+  width: 20,
+  className: "",
 };
 
 export default Preloader;

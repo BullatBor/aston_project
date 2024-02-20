@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { fireBaseRegister } from "../../services/firebaseAuth";
 import { setIsLoading, setUser } from "../../store/auth/authSlice";
-import { AuthForm } from "../../ui/components/AuthForm/AuthForm";
+import AuthForm from "../../ui/components/AuthForm/AuthForm";
 import s from "./signUp.module.css";
 
 export const SignUp = () => {
