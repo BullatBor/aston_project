@@ -9,6 +9,7 @@ import s from "./signIn.module.css";
 export const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const onSubmitLogin = async (email: string, password: string) => {
     dispatch(setIsLoading(true));
     const user = await fireBaseLogin(email, password);
