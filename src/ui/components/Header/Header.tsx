@@ -2,7 +2,6 @@ import React from "react";
 import { Input } from "../../elements/Input/Input";
 import s from "./Header.module.css";
 import { Link } from "react-router-dom";
-import withAuthorization from "../../../hoc/withAuthComponents";
 import { AuthLinks } from "../AuthLinks/AuthLinks";
 import { AuthButtons } from "../AuthButtons/AuthButtons";
 import { isAuth } from "../../../store/auth/authSlice";
