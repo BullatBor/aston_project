@@ -22,7 +22,7 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.isAuth = true;
     },
-    deleteUser(state) {
+    logout(state) {
       state.user = null;
       state.isAuth = false;
     },
@@ -34,6 +34,7 @@ const userSlice = createSlice({
 
 export const isLoading = (state: RootState) => state.userReducer.isLoading;
 export const user = (state: RootState) => state.userReducer.user;
+export const isAuth = (state: RootState) => state.userReducer.isAuth;
 
-export const { setUser, deleteUser, setIsLoading } = userSlice.actions;
+export const { setUser, logout, setIsLoading } = userSlice.actions;
 export default userSlice.reducer;

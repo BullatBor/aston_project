@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
@@ -29,4 +30,8 @@ export function fireBaseLogin(email: string, password: string) {
     .catch((error) => {
       toast.error(error.message);
     });
+}
+
+export function fireBaseLogout() {
+  return signOut(auth);
 }
