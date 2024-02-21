@@ -8,6 +8,7 @@ import { Favorites } from "./pages/Favorites/Favorites";
 import { UserHistory } from "./pages/History/UserHistory";
 import { SignIn } from "./pages/SignIn/SignIn";
 import { Toaster } from "react-hot-toast";
+import WithAuthRequired from "./hoc/withAuthRequired";
 
 function App() {
   return (
@@ -19,8 +20,22 @@ function App() {
             <Route path="*" element={<MainPage />} />
             <Route path="signIn" element={<SignIn />} />
             <Route path="signUp" element={<SignUp />} />
-            <Route path="favorites" element={<Favorites />} />
-            <Route path="history" element={<UserHistory />} />
+            <Route
+              path="favorites"
+              element={
+                <WithAuthRequired>
+                  <Favorites />
+                </WithAuthRequired>
+              }
+            />
+            <Route
+              path="history"
+              element={
+                <WithAuthRequired>
+                  <UserHistory />
+                </WithAuthRequired>
+              }
+            />
           </Routes>
           <Toaster position="top-center" reverseOrder={false} />
         </div>
