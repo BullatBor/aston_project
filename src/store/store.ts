@@ -5,7 +5,7 @@ import { movieApi } from "./rtkQuery/movieApi";
 
 const rootReducer = combineReducers({
   userReducer,
-  [movieApi.reducerPath]: movieApi.reducer
+  [movieApi.reducerPath]: movieApi.reducer,
 });
 
 const setupStore = () =>

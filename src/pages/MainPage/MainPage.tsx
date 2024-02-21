@@ -11,7 +11,7 @@ export const MainPage = () => {
       {movies ? (
         movies.map(
           (movie, index) =>
-            index !== 0 && <MovieCard key={movie.id} {...movie} />
+            index !== 0 && <MovieCard key={movie.id} {...movie} />,
         )
       ) : (
         <div className={s.preloader}>
