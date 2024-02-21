@@ -9,10 +9,7 @@ export const MainPage = () => {
   return (
     <div className={s.wrapper}>
       {movies ? (
-        movies.map(
-          (movie, index) =>
-            index !== 0 && <MovieCard key={movie.id} {...movie} />
-        )
+        movies.map((movie) => <MovieCard key={movie.id} {...movie} />)
       ) : (
         <div className={s.preloader}>
           <Preloader width={40} />
