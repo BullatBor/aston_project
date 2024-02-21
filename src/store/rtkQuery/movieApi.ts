@@ -17,7 +17,7 @@ export const movieApi = createApi({
         _limit: limit,
       }),
       transformResponse: (response: { docs: [] }) => {
-        return response.docs;
+        return response.docs.slice(1);
       },
     }),
   }),
