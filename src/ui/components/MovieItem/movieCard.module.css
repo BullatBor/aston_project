@@ -4,7 +4,6 @@
   display: flex;
   padding: 15px 25px;
   width: 600px;
-  height: calc(150px 200px);
   background-color: var(--dark-white);
   gap: 20px;
   border-radius: 15px;
