@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { movieApi } from "../../store/rtkQuery/movieApi";
 import MovieCard from "../../ui/components/MovieItem/MovieCard";
 import Preloader from "../../ui/elements/Preloader/Preloader";
@@ -11,7 +11,7 @@ export const MainPage = () => {
       {movies ? (
         movies.map(
           (movie, index) =>
-            index !== 0 && <MovieCard key={movie.id} {...movie} />,
+            index !== 0 && <MovieCard key={movie.id} {...movie} />
         )
       ) : (
         <div className={s.preloader}>

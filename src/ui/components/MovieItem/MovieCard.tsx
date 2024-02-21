@@ -26,7 +26,7 @@ const MovieCard = ({
   return (
     <div className={s.wrapper}>
       <div className={s.poster}>
-        <img src={poster.url} />
+        <img src={poster.url} alt="poster" />
       </div>
       <div className={s.rightBlock}>
         <div className={s.descriptions}>
