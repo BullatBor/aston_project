@@ -9,10 +9,10 @@ interface withAuthProps {
 
 const WithAuthRequired: FC<withAuthProps> = ({ children }) => {
   const isLogged = useSelector(isAuth);
-  if (isLogged) return children;
-  else {
-    return <Navigate to={"/signIn"} replace={true} />;
+  if (isLogged) {
+    return children;
   }
+  return <Navigate to={"/signIn"} replace={true} />;
 };
 
 export default WithAuthRequired;
