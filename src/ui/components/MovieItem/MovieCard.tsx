@@ -2,8 +2,11 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { ICollection } from "../../../models/ICollection";
-import { isAuth } from "../../../store/auth/authSlice";
+import { isAuth, user } from "../../../store/auth/authSlice";
+import { favouriteApi } from "../../../store/rtkQuery/favoritesApi";
+import { movieApi } from "../../../store/rtkQuery/movieApi";
 import Button from "../../elements/Button/Button";
+import Preloader from "../../elements/Preloader/Preloader";
 import s from "./movieCard.module.css";
 
 const MovieCard = ({
@@ -13,12 +16,15 @@ const MovieCard = ({
   year,
   rating,
   countries,
+  id,
 }: ICollection) => {
   const isLogged = useSelector(isAuth);
+  const userInfo = useSelector(user);
+  const [addFavourite, addResult] = favouriteApi.useAddToFavouriteMutation();
 
-  const favoriteHandler = () => {
+  const favoriteHandler = async (id: number) => {
     if (isLogged) {
-      console.log("added");
+      addFavourite({ email: userInfo?.email, id });
     } else {
       toast.error("Чтобы продолжить надо авторизоваться");
     }
@@ -52,8 +58,8 @@ const MovieCard = ({
           </div>
         </div>
         <div className={s.buttons}>
-          <Button variant="green" onClick={favoriteHandler}>
-            В избранное
+          <Button variant="green" onClick={() => favoriteHandler(id)}>
+            {addResult.isLoading ? <Preloader /> : "В избранное"}
           </Button>
         </div>
       </div>
