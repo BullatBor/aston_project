@@ -7,7 +7,7 @@ import { favouriteApi } from "./rtkQuery/favoritesApi";
 const rootReducer = combineReducers({
   [movieApi.reducerPath]: movieApi.reducer,
   [favouriteApi.reducerPath]: favouriteApi.reducer,
-  userReducer
+  userReducer,
 });
 
 const setupStore = () =>
@@ -16,10 +16,7 @@ const setupStore = () =>
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat([
-        movieApi.middleware,
-        favouriteApi.middleware
-      ]),
+      }).concat([movieApi.middleware, favouriteApi.middleware]),
   });
 
 export const store = setupStore();

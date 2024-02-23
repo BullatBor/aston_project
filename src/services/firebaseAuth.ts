@@ -13,12 +13,12 @@ export function fireBaseRegister(email: string, password: string) {
   return createUserWithEmailAndPassword(auth, email, password)
     .then((credentials) => credentials.user)
     .then((user) => {
-      if(user.email) {
+      if (user.email) {
         setDoc(doc(fireStore, "users", user.email), {
           favourite: [],
           history: [],
         });
-      }   
+      }
       return user;
     })
     .catch((error) => {

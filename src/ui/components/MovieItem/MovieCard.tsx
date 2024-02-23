@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useFavourites } from "../../../hooks/useFavourites";
 import { ICollection } from "../../../models/ICollection";
-import { isAuth, user } from "../../../store/auth/authSlice";
-import { favouriteApi } from "../../../store/rtkQuery/favoritesApi";
-import { movieApi } from "../../../store/rtkQuery/movieApi";
+import { isAuth } from "../../../store/auth/authSlice";
 import Button from "../../elements/Button/Button";
 import Preloader from "../../elements/Preloader/Preloader";
 import s from "./movieCard.module.css";
@@ -18,17 +17,30 @@ const MovieCard = ({
   countries,
   id,
 }: ICollection) => {
-  const isLogged = useSelector(isAuth);
-  const userInfo = useSelector(user);
-  const [addFavourite, addResult] = favouriteApi.useAddToFavouriteMutation();
+  const { addToFavourite, isFetching, removeFromFavourite, hasInFavourite } =
+    useFavourites();
 
-  const favoriteHandler = async (id: number) => {
+  const [isHas, setHas] = useState<boolean>(hasInFavourite(id));
+  const isLogged = useSelector(isAuth);
+
+  const addFavoriteHandler = async (id: number) => {
     if (isLogged) {
-      addFavourite({ email: userInfo?.email, id });
+      await addToFavourite(id);
+      setHas((prev) => !prev);
     } else {
       toast.error("Чтобы продолжить надо авторизоваться");
     }
   };
+
+  const removeHandler = async (id: number) => {
+    if (isLogged) {
+      await removeFromFavourite(id);
+      setHas((prev) => !prev);
+    } else {
+      toast.error("Чтобы продолжить надо авторизоваться");
+    }
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.poster}>
@@ -58,9 +70,15 @@ const MovieCard = ({
           </div>
         </div>
         <div className={s.buttons}>
-          <Button variant="green" onClick={() => favoriteHandler(id)}>
-            {addResult.isLoading ? <Preloader /> : "В избранное"}
-          </Button>
+          {isHas && isLogged ? (
+            <Button variant="red" onClick={() => removeHandler(id)}>
+              {isFetching ? <Preloader width={15} /> : "Удалить из избранного"}
+            </Button>
+          ) : (
+            <Button variant="green" onClick={() => addFavoriteHandler(id)}>
+              {isFetching ? <Preloader width={15} /> : "В избранное"}
+            </Button>
+          )}
         </div>
       </div>
     </div>

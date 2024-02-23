@@ -6,18 +6,14 @@ import {
   updateDoc,
 } from "firebase/firestore";
 import { fireStore } from "../../firebase-config";
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import toast from "react-hot-toast";
-
-interface test {
-  id: number
-}
 
 export const favouriteApi = createApi({
   baseQuery: fakeBaseQuery(),
   reducerPath: "favouriteApi",
   endpoints: (build) => ({
-    getAllFavourites: build.query<test[], string | null>({
+    getAllFavourites: build.query<number[], string | null | undefined>({
       async queryFn(email) {
         try {
           if (!email) {
@@ -53,10 +49,10 @@ export const favouriteApi = createApi({
           await updateDoc(userRef, {
             favourite: arrayUnion(args.id),
           });
-          toast.success("Успешно добавлено")
+          toast.success("Успешно добавлено");
           return { data: [args.id] };
         } catch (e) {
-          toast.error("что то пошло не так")
+          toast.error("что то пошло не так");
           return { error: e };
         }
       },
@@ -76,9 +72,10 @@ export const favouriteApi = createApi({
           await updateDoc(userRef, {
             favourite: arrayRemove(args.id),
           });
-
+          toast.success("Успешно удалено");
           return { data: [args.id] };
         } catch (e) {
+          toast.error("что то пошло не так");
           return { error: e };
         }
       },
