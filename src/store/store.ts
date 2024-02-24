@@ -2,10 +2,12 @@ import { combineReducers } from "redux";
 import { configureStore } from "@reduxjs/toolkit";
 import userReducer from "./auth/authSlice";
 import { movieApi } from "./rtkQuery/movieApi";
+import { favouriteApi } from "./rtkQuery/favoritesApi";
 
 const rootReducer = combineReducers({
-  userReducer,
   [movieApi.reducerPath]: movieApi.reducer,
+  [favouriteApi.reducerPath]: favouriteApi.reducer,
+  userReducer,
 });
 
 const setupStore = () =>
@@ -14,7 +16,7 @@ const setupStore = () =>
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat(movieApi.middleware),
+      }).concat([movieApi.middleware, favouriteApi.middleware]),
   });
 
 export const store = setupStore();
