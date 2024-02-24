@@ -9,6 +9,7 @@ import { UserHistory } from "./pages/History/UserHistory";
 import { SignIn } from "./pages/SignIn/SignIn";
 import { Toaster } from "react-hot-toast";
 import WithAuthRequired from "./hoc/withAuthRequired";
+import { MoviePage } from "./pages/MoviePage/MoviePage";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
                 </WithAuthRequired>
               }
             />
+            <Route path="movie/:id?" element={<MoviePage />} />
           </Routes>
           <Toaster position="top-center" reverseOrder={false} />
         </div>

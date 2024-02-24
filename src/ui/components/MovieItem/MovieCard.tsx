@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { useFavourites } from "../../../hooks/useFavourites";
 import { ICollection } from "../../../models/ICollection";
 import { isAuth } from "../../../store/auth/authSlice";
@@ -26,6 +27,7 @@ const MovieCard = ({
 
   const [isHas, setHas] = useState<boolean>(hasInFavourite(id));
   const isLogged = useSelector(isAuth);
+  const navigate = useNavigate();
 
   const addFavoriteHandler = async (id: number) => {
     if (isLogged) {
@@ -45,16 +47,26 @@ const MovieCard = ({
     }
   };
 
+  const movieLinkHandler = (id: number) => {
+    navigate(`/movie/${id}`);
+  };
+
   return (
     <div className={s.wrapper}>
       <div className={s.poster}>
-        <img src={poster.url} alt="poster" />
+        <img
+          src={poster.url}
+          alt="poster"
+          onClick={() => movieLinkHandler(id)}
+        />
       </div>
       <div className={s.rightBlock}>
         <div className={s.descriptions}>
           <div className={s.header}>
             <span className={s.title}>Название: </span>
-            <span className={s.name}>{name}</span>
+            <span className={s.name} onClick={() => movieLinkHandler(id)}>
+              {name}
+            </span>
           </div>
           <div className={s.header}>
             <span className={s.title}>Год:</span>

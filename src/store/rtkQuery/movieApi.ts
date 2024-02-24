@@ -20,5 +20,10 @@ export const movieApi = createApi({
         return response.docs.slice(1);
       },
     }),
+    getMovie: build.query<ICollection, number>({
+      query: (id) => ({
+        url: `/movie/${id}`,
+      }),
+    }),
   }),
 });
