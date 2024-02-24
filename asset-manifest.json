@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/aston_project/static/css/main.332607f2.css",
-    "main.js": "/aston_project/static/js/main.ea0d847e.js",
+    "main.js": "/aston_project/static/js/main.daf4b1d6.js",
     "static/js/453.f7b093e6.chunk.js": "/aston_project/static/js/453.f7b093e6.chunk.js",
     "index.html": "/aston_project/index.html",
     "main.332607f2.css.map": "/aston_project/static/css/main.332607f2.css.map",
-    "main.ea0d847e.js.map": "/aston_project/static/js/main.ea0d847e.js.map",
+    "main.daf4b1d6.js.map": "/aston_project/static/js/main.daf4b1d6.js.map",
     "453.f7b093e6.chunk.js.map": "/aston_project/static/js/453.f7b093e6.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.332607f2.css",
-    "static/js/main.ea0d847e.js"
+    "static/js/main.daf4b1d6.js"
   ]
 }
