@@ -14,7 +14,6 @@ export const useFavourites = () => {
 
   const [addInFavourite, addResult] = favouriteApi.useAddToFavouriteMutation();
 
-
   const [removeFavourite, removeResult] =
     favouriteApi.useRemoveFromFavouriteMutation();
 
