@@ -17,15 +17,19 @@ const MovieCard = ({
   countries,
   id,
 }: ICollection) => {
-  const { addToFavourite, isFetching, removeFromFavourite, hasInFavourite } =
-    useFavourites();
+  const {
+    handleAddToFavourite,
+    isFetching,
+    handleRemoveFromFavourite,
+    hasInFavourite,
+  } = useFavourites();
 
   const [isHas, setHas] = useState<boolean>(hasInFavourite(id));
   const isLogged = useSelector(isAuth);
 
   const addFavoriteHandler = async (id: number) => {
     if (isLogged) {
-      await addToFavourite(id);
+      await handleAddToFavourite(id);
       setHas((prev) => !prev);
     } else {
       toast.error("Чтобы продолжить надо авторизоваться");
@@ -34,7 +38,7 @@ const MovieCard = ({
 
   const removeHandler = async (id: number) => {
     if (isLogged) {
-      await removeFromFavourite(id);
+      await handleRemoveFromFavourite(id);
       setHas((prev) => !prev);
     } else {
       toast.error("Чтобы продолжить надо авторизоваться");
