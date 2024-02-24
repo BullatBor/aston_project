@@ -13,14 +13,16 @@ export const useFavourites = () => {
   };
 
   const [addInFavourite, addResult] = favouriteApi.useAddToFavouriteMutation();
+
+
   const [removeFavourite, removeResult] =
     favouriteApi.useRemoveFromFavouriteMutation();
 
-  const addToFavourite = async (id: number) => {
+  const handleAddToFavourite = async (id: number) => {
     await addInFavourite({ email: userInfo?.email, id });
   };
 
-  const removeFromFavourite = async (id: number) => {
+  const handleRemoveFromFavourite = async (id: number) => {
     await removeFavourite({ email: userInfo?.email, id });
   };
 
@@ -28,7 +30,7 @@ export const useFavourites = () => {
     hasInFavourite,
     isFetching: addResult.isLoading || removeResult.isLoading,
     isLoading,
-    addToFavourite,
-    removeFromFavourite,
+    handleAddToFavourite,
+    handleRemoveFromFavourite,
   };
 };
