@@ -42,11 +42,19 @@ export const FavouriteButton = ({ movieId }: FavourButtonType) => {
   return (
     <>
       {isHas && isLogged ? (
-        <Button variant="red" onClick={() => removeHandler(movieId)}>
+        <Button
+          variant="red"
+          onClick={() => removeHandler(movieId)}
+          disabled={isFetching}
+        >
           {isFetching ? <Preloader width={15} /> : "Удалить из избранного"}
         </Button>
       ) : (
-        <Button variant="green" onClick={() => addFavoriteHandler(movieId)}>
+        <Button
+          variant="green"
+          onClick={() => addFavoriteHandler(movieId)}
+          disabled={isFetching}
+        >
           {isFetching ? <Preloader width={15} /> : "В избранное"}
         </Button>
       )}

@@ -49,7 +49,6 @@ export const favouriteApi = createApi({
           await updateDoc(userRef, {
             favourite: arrayUnion(args.id),
           });
-          toast.success("Успешно добавлено");
           return { data: [args.id] };
         } catch (e) {
           toast.error("что то пошло не так");
@@ -72,7 +71,6 @@ export const favouriteApi = createApi({
           await updateDoc(userRef, {
             favourite: arrayRemove(args.id),
           });
-          toast.success("Успешно удалено");
           return { data: [args.id] };
         } catch (e) {
           toast.error("что то пошло не так");
