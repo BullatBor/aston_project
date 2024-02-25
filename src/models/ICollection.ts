@@ -3,8 +3,8 @@ export interface ICollection {
   name: string;
   description: string;
   shortDescription: string;
-  genres: {name: string}[];
-  budget: {currency: string; value: number}
+  genres: { name: string }[];
+  budget: { currency: string; value: number };
   year: number;
   rating: {
     kp: number;
