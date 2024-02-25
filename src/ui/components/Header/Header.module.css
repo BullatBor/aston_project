@@ -8,10 +8,17 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid gray;
+  position: relative;
 }
 
 .logo {
   cursor: pointer;
+  height: 50px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.logo img {
+  height: 100%;
 }
 
 .auth {

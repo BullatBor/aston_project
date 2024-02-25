@@ -1,12 +1,7 @@
 import React, { useState } from "react";
-import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useFavourites } from "../../../hooks/useFavourites";
 import { ICollection } from "../../../models/ICollection";
-import { isAuth } from "../../../store/auth/authSlice";
-import Button from "../../elements/Button/Button";
-import Preloader from "../../elements/Preloader/Preloader";
+import { FavouriteButton } from "../FavouriteButton/FavouriteButton";
 import s from "./movieCard.module.css";
 
 const MovieCard = ({
@@ -18,34 +13,7 @@ const MovieCard = ({
   countries,
   id,
 }: ICollection) => {
-  const {
-    handleAddToFavourite,
-    isFetching,
-    handleRemoveFromFavourite,
-    hasInFavourite,
-  } = useFavourites();
-
-  const [isHas, setHas] = useState<boolean>(hasInFavourite(id));
-  const isLogged = useSelector(isAuth);
   const navigate = useNavigate();
-
-  const addFavoriteHandler = async (id: number) => {
-    if (isLogged) {
-      await handleAddToFavourite(id);
-      setHas((prev) => !prev);
-    } else {
-      toast.error("Чтобы продолжить надо авторизоваться");
-    }
-  };
-
-  const removeHandler = async (id: number) => {
-    if (isLogged) {
-      await handleRemoveFromFavourite(id);
-      setHas((prev) => !prev);
-    } else {
-      toast.error("Чтобы продолжить надо авторизоваться");
-    }
-  };
 
   const movieLinkHandler = (id: number) => {
     navigate(`/movie/${id}`);
@@ -86,15 +54,7 @@ const MovieCard = ({
           </div>
         </div>
         <div className={s.buttons}>
-          {isHas && isLogged ? (
-            <Button variant="red" onClick={() => removeHandler(id)}>
-              {isFetching ? <Preloader width={15} /> : "Удалить из избранного"}
-            </Button>
-          ) : (
-            <Button variant="green" onClick={() => addFavoriteHandler(id)}>
-              {isFetching ? <Preloader width={15} /> : "В избранное"}
-            </Button>
-          )}
+          <FavouriteButton movieId={id} />
         </div>
       </div>
     </div>

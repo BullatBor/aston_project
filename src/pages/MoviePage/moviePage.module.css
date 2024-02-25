@@ -92,3 +92,10 @@
   display: flex;
   gap: 5px;
 }
+
+.buttons {
+  display: flex;
+  height: 100%;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
