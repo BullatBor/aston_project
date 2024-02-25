@@ -6,6 +6,7 @@ import { AuthLinks } from "../AuthLinks/AuthLinks";
 import { AuthButtons } from "../AuthButtons/AuthButtons";
 import { isAuth } from "../../../store/auth/authSlice";
 import { useSelector } from "react-redux";
+import logo from "../../../assets/icons/logo.jpg";
 
 export const Header = () => {
   const isLogged = useSelector(isAuth);
@@ -13,7 +14,9 @@ export const Header = () => {
     <div className={s.header}>
       <div className={s.leftPart}>
         <Link to={"*"}>
-          <div className={s.logo}>Logo</div>
+          <div className={s.logo}>
+            <img src={logo} />
+          </div>
         </Link>
         {isLogged && <Input placeholder="Поиск" />}
       </div>
