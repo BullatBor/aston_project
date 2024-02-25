@@ -19,7 +19,7 @@ export const MoviePage = () => {
         <div className={s.card}>
           <div className={s.main}>
             <div className={s.leftPart}>
-              <img src={movieInfo.poster.url} />
+              <img src={movieInfo.poster.url} alt="poster" />
               <div className={s.infoUnderLogo}>
                 <div className={s.otherInfo}>
                   <div className={s.descriptTitle}>Жанр:</div>

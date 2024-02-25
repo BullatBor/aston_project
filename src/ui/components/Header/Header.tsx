@@ -15,7 +15,7 @@ export const Header = () => {
       <div className={s.leftPart}>
         <Link to={"*"}>
           <div className={s.logo}>
-            <img src={logo} />
+            <img src={logo} alt="poster" />
           </div>
         </Link>
         {isLogged && <Input placeholder="Поиск" />}

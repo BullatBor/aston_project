@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { ICollection } from "../../../models/ICollection";
 import { FavouriteButton } from "../FavouriteButton/FavouriteButton";
