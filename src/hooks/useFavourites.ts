@@ -6,55 +6,42 @@ import { favouriteApi } from "../store/rtkQuery/favoritesApi";
 
 export const useFavourites = () => {
   const userInfo = useSelector(user);
-  const [isRefetch, setIsRefetch] = useState<boolean>(false)
 
-  const { data: favouriteList = [], isLoading, refetch } =
+  const { data: favouriteList = [], isLoading } =
     favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
 
   const hasInFavourite = (id: number) => {
-    return favouriteList.includes(id)
+    return favouriteList.includes(id);
   };
 
-  console.log(favouriteList)
-  
+  const [addInFavourite, addResult] = favouriteApi.useAddToFavouriteMutation();
 
-  const [addInFavourite] = favouriteApi.useAddToFavouriteMutation();
-
-  const [removeFavourite] =
+  const [removeFavourite, removeResult] =
     favouriteApi.useRemoveFromFavouriteMutation();
 
   const handleAddToFavourite = async (id: number) => {
     try {
-      setIsRefetch(true)
       await addInFavourite({ email: userInfo?.email, id });
-      await refetch()
-      setIsRefetch(false)
       toast.success("Успешно добавлено");
-    } catch(e){
+    } catch (e) {
       toast.error("Подождите...");
     }
-    
   };
 
   const handleRemoveFromFavourite = async (id: number) => {
     try {
-      setIsRefetch(true)
       await removeFavourite({ email: userInfo?.email, id });
-      await refetch()
-      setIsRefetch(false)
       toast.success("Успешно удалено");
-    } catch(e) {
+    } catch (e) {
       toast.error("Подождите...");
     }
-    
   };
 
   return {
     hasInFavourite,
-    isFetching: isRefetch,
+    isFetching: addResult.isLoading || removeResult.isLoading,
     isLoading,
     handleAddToFavourite,
     handleRemoveFromFavourite,
-    favouriteList
   };
 };

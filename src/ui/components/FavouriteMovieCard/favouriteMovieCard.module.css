@@ -88,3 +88,10 @@
   font-size: 14px;
   word-break: inherit;
 }
+
+.preloader {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  padding: 45px 0;
+}

@@ -63,7 +63,9 @@ const FavouriteMovieCard = ({ id }: FavouriteMovieCardProps) => {
             </div>
           </>
         ) : (
-          <Preloader width={30} />
+          <div className={s.preloader}>
+            <Preloader width={50} />
+          </div>
         )}
       </div>
     </>

@@ -1,12 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useFavourites } from "../../hooks/useFavourites";
 import { user } from "../../store/auth/authSlice";
+import { favouriteApi } from "../../store/rtkQuery/favoritesApi";
 import FavouriteMovieCard from "../../ui/components/FavouriteMovieCard/FavouriteMovieCard";
 import s from "./favourite.module.css";
 
 export const Favorites = () => {
-  const { favouriteList } = useFavourites();
+  const userInfo = useSelector(user);
+
+  const { data: favouriteList = [], isLoading } =
+    favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
 
   return (
     <div className={s.wrapper}>

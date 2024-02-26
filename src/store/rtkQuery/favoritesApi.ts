@@ -12,6 +12,8 @@ import toast from "react-hot-toast";
 export const favouriteApi = createApi({
   baseQuery: fakeBaseQuery(),
   reducerPath: "favouriteApi",
+  refetchOnMountOrArgChange: true,
+  tagTypes: ["favourites"],
   endpoints: (build) => ({
     getAllFavourites: build.query<number[], string | null | undefined>({
       async queryFn(email) {
@@ -34,6 +36,7 @@ export const favouriteApi = createApi({
           return { error: e };
         }
       },
+      providesTags: ["favourites"],
     }),
     addToFavourite: build.mutation({
       async queryFn(args: {
@@ -55,6 +58,7 @@ export const favouriteApi = createApi({
           return { error: e };
         }
       },
+      invalidatesTags: ["favourites"],
     }),
     removeFromFavourite: build.mutation({
       async queryFn(args: {
@@ -77,6 +81,7 @@ export const favouriteApi = createApi({
           return { error: e };
         }
       },
+      invalidatesTags: ["favourites"],
     }),
   }),
 });
