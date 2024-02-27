@@ -29,13 +29,13 @@ export const AuthButtons = () => {
 
   return (
     <div className={s.buttons}>
-      <Button variant="blue" onClick={historyHandler}>
+      <Button variant="blue" onClick={historyHandler} className={s.btn}>
         История
       </Button>
-      <Button variant="blue" onClick={favoritesHandler}>
+      <Button variant="blue" onClick={favoritesHandler} className={s.btn}>
         Избранное
       </Button>
-      <Button variant="green" onClick={logoutHandler}>
+      <Button variant="green" onClick={logoutHandler} className={s.btn}>
         {isLoad ? <Preloader /> : "Выход"}
       </Button>
     </div>

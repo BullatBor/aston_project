@@ -1,5 +1,4 @@
 import React from "react";
-import { Input } from "../../elements/Input/Input";
 import s from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { AuthLinks } from "../AuthLinks/AuthLinks";
@@ -7,6 +6,7 @@ import { AuthButtons } from "../AuthButtons/AuthButtons";
 import { isAuth } from "../../../store/auth/authSlice";
 import { useSelector } from "react-redux";
 import logo from "../../../assets/icons/logo.jpg";
+import { Search } from "../Search/Search";
 
 export const Header = () => {
   const isLogged = useSelector(isAuth);
@@ -18,7 +18,7 @@ export const Header = () => {
             <img src={logo} alt="poster" />
           </div>
         </Link>
-        {isLogged && <Input placeholder="Поиск" />}
+        {isLogged && <Search />}
       </div>
       <div className={s.auth}>{isLogged ? <AuthButtons /> : <AuthLinks />}</div>
     </div>
