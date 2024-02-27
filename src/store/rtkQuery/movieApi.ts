@@ -29,12 +29,11 @@ export const movieApi = createApi({
       query: (name) => ({
         url: "/movie/search",
         params: {
-          limit: 3,
           query: name,
         }        
       }),
       transformResponse: (response: { docs: [] }) => {
-        return response.docs.slice(1);
+        return response.docs;
       },
     }),
   }),
