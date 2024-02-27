@@ -19,7 +19,9 @@ export const SearchPage = () => {
       {searchResult ? (
         searchResult.map((item) => <MovieCard key={item.id} {...item} />)
       ) : (
-        <Preloader />
+        <div className={s.preloader}>
+          <Preloader width={45} />
+        </div>
       )}
     </div>
   );

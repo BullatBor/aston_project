@@ -13,21 +13,22 @@ export const Search = () => {
     setSearchText(e.target.value);
   };
 
-  const searchHandler = () => {
+  const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     handleAddToHistory();
   };
 
   return (
-    <div className={s.wrapper}>
+    <form className={s.form} onSubmit={searchHandler}>
       <Input placeholder="Поиск" onChange={changeHandler} value={searchText} />
       <Button
         variant="blue"
         className={s.searchBtn}
-        onClick={searchHandler}
+        type="submit"
         disabled={isFetching}
       >
         {isFetching ? <Preloader width={15} /> : "Поиск"}
       </Button>
-    </div>
+    </form>
   );
 };

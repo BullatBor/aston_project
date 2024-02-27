@@ -30,7 +30,7 @@ export const movieApi = createApi({
         url: "/movie/search",
         params: {
           query: name,
-        }        
+        },
       }),
       transformResponse: (response: { docs: [] }) => {
         return response.docs;

@@ -18,7 +18,11 @@ const setupStore = () =>
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware({
         serializableCheck: false,
-      }).concat([movieApi.middleware, favouriteApi.middleware, historyApi.middleware]),
+      }).concat([
+        movieApi.middleware,
+        favouriteApi.middleware,
+        historyApi.middleware,
+      ]),
   });
 
 export const store = setupStore();

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 interface ButtonProps {
   children?: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   variant: "green" | "red" | "blue";
   type?: "button" | "submit" | "reset" | undefined;
