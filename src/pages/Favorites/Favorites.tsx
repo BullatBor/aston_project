@@ -8,8 +8,9 @@ import s from "./favourite.module.css";
 export const Favorites = () => {
   const userInfo = useSelector(user);
 
-  const { data: favouriteList = [], isLoading } =
-    favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+  const { data: favouriteList = [] } = favouriteApi.useGetAllFavouritesQuery(
+    userInfo?.email
+  );
 
   return (
     <div className={s.wrapper}>

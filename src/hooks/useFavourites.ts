@@ -1,4 +1,3 @@
-import { useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { user } from "../store/auth/authSlice";
