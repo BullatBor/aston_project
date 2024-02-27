@@ -25,5 +25,16 @@ export const movieApi = createApi({
         url: `/movie/${id}`,
       }),
     }),
+    searchMovie: build.query<ICollection[], string>({
+      query: (name) => ({
+        url: "/movie/search",
+        params: {
+          query: name,
+        },
+      }),
+      transformResponse: (response: { docs: [] }) => {
+        return response.docs;
+      },
+    }),
   }),
 });

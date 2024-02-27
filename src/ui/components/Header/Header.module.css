@@ -38,7 +38,7 @@
 
 .leftPart {
   display: flex;
-  gap: 120px;
+  gap: 50px;
   height: 100%;
   align-items: center;
 }

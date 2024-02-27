@@ -10,6 +10,7 @@ import { SignIn } from "./pages/SignIn/SignIn";
 import { Toaster } from "react-hot-toast";
 import WithAuthRequired from "./hoc/withAuthRequired";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
+import { SearchPage } from "./pages/SearchPage/SearchPage";
 
 function App() {
   return (
@@ -34,6 +35,14 @@ function App() {
               element={
                 <WithAuthRequired>
                   <UserHistory />
+                </WithAuthRequired>
+              }
+            />
+            <Route
+              path="search/:query?"
+              element={
+                <WithAuthRequired>
+                  <SearchPage />
                 </WithAuthRequired>
               }
             />

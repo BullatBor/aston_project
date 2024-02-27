@@ -1,0 +1,32 @@
+.wrapper {
+  display: flex;
+  width: 800px;
+  box-shadow:
+    rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
+    rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 9px;
+  cursor: pointer;
+}
+
+.title {
+  display: flex;
+  gap: 10px;
+}
+
+.searchTitle {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.text {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.btn {
+  min-width: 80px !important;
+}
+

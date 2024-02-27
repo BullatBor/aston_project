@@ -9,7 +9,7 @@ export const Favorites = () => {
   const userInfo = useSelector(user);
 
   const { data: favouriteList = [] } = favouriteApi.useGetAllFavouritesQuery(
-    userInfo?.email
+    userInfo?.email,
   );
 
   return (
