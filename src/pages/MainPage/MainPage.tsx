@@ -2,7 +2,7 @@ import React from "react";
 import { useFavourites } from "../../hooks/useFavourites";
 import { ICollection } from "../../models/ICollection";
 import { movieApi } from "../../store/rtkQuery/movieApi";
-import MovieCard from "../../ui/components/MovieItem/MovieCard";
+import MovieCard from "../../ui/components/MovieCard/MovieCard";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 import s from "./mainPage.module.css";
 

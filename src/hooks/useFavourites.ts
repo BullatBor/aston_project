@@ -1,3 +1,5 @@
+import { useState } from "react";
+import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { user } from "../store/auth/authSlice";
 import { favouriteApi } from "../store/rtkQuery/favoritesApi";
@@ -18,11 +20,21 @@ export const useFavourites = () => {
     favouriteApi.useRemoveFromFavouriteMutation();
 
   const handleAddToFavourite = async (id: number) => {
-    await addInFavourite({ email: userInfo?.email, id });
+    try {
+      await addInFavourite({ email: userInfo?.email, id });
+      toast.success("Успешно добавлено");
+    } catch (e) {
+      toast.error("Подождите...");
+    }
   };
 
   const handleRemoveFromFavourite = async (id: number) => {
-    await removeFavourite({ email: userInfo?.email, id });
+    try {
+      await removeFavourite({ email: userInfo?.email, id });
+      toast.success("Успешно удалено");
+    } catch (e) {
+      toast.error("Подождите...");
+    }
   };
 
   return {
