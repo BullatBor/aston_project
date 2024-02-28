@@ -3,7 +3,6 @@ import debounce from "lodash.debounce";
 import { movieApi } from "../store/rtkQuery/movieApi";
 
 export const useDebounce = () => {
-
   const [trigger, { currentData, isLoading, isFetching }] =
     movieApi.useLazySearchMovieQuery();
 
@@ -13,7 +12,7 @@ export const useDebounce = () => {
         (userInput: string) => trigger({ name: userInput, limit: 5 }),
         2000,
       ),
-    [],
+    [trigger],
   );
 
   useEffect(() => {
