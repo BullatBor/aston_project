@@ -25,10 +25,11 @@ export const movieApi = createApi({
         url: `/movie/${id}`,
       }),
     }),
-    searchMovie: build.query<ICollection[], string>({
-      query: (name) => ({
+    searchMovie: build.query<ICollection[], { name: string; limit?: number }>({
+      query: ({ name, limit = 10 }) => ({
         url: "/movie/search",
         params: {
+          limit: limit,
           query: name,
         },
       }),

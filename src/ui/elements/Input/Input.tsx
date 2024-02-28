@@ -1,4 +1,4 @@
-import React from "react";
+import React, { LegacyRef } from "react";
 import cn from "classnames";
 import s from "./input.module.css";
 
@@ -9,6 +9,8 @@ interface InputProps {
   placeholder?: string;
   type?: string;
   name?: string;
+  inputRef?: null | LegacyRef<HTMLInputElement>;
+  onFocus: () => void;
 }
 
 export const Input = ({
@@ -18,6 +20,8 @@ export const Input = ({
   type,
   placeholder,
   name,
+  inputRef,
+  onFocus,
 }: InputProps) => {
   return (
     <div className={s.inputContainer}>
@@ -28,6 +32,8 @@ export const Input = ({
         value={value}
         onChange={onChange}
         className={cn(s.input, className)}
+        ref={inputRef}
+        onFocus={onFocus}
       />
     </div>
   );
