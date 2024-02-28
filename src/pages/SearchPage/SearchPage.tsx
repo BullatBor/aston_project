@@ -12,7 +12,7 @@ export const SearchPage = () => {
     return <div>Упс, что то пошло не так</div>;
   }
 
-  const { data: searchResult } = movieApi.useSearchMovieQuery(query);
+  const { data: searchResult } = movieApi.useSearchMovieQuery({ name: query });
 
   return (
     <div className={s.wrapper}>
