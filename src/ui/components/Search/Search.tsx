@@ -15,7 +15,7 @@ export const Search = () => {
   const { isSuggestVisible, onSearchFocus, suggestRef, inputRef } =
     useSuggest();
 
-  const { handleInputChange, isLoading, currentData } = useDebounce();
+  const { handleInputChange, currentData } = useDebounce();
 
   const changeHandler = (e: any) => {
     setSearchText(e.target.value);
