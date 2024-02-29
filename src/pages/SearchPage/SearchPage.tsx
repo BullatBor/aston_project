@@ -5,7 +5,7 @@ import MovieCard from "../../ui/components/MovieCard/MovieCard";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 import s from "./searchPage.module.css";
 
-export const SearchPage = () => {
+const SearchPage = () => {
   const { query } = useParams();
 
   if (!query) {
@@ -26,3 +26,5 @@ export const SearchPage = () => {
     </div>
   );
 };
+
+export default SearchPage;

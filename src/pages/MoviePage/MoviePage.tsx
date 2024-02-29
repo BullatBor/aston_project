@@ -5,7 +5,7 @@ import { movieApi } from "../../store/rtkQuery/movieApi";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 import { FavouriteButton } from "../../ui/components/FavouriteButton/FavouriteButton";
 
-export const MoviePage = () => {
+const MoviePage = () => {
   const { id } = useParams();
 
   if (!id) {
@@ -65,3 +65,5 @@ export const MoviePage = () => {
     </div>
   );
 };
+
+export default MoviePage;
