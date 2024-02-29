@@ -5,7 +5,7 @@ import { favouriteApi } from "../../store/rtkQuery/favoritesApi";
 import FavouriteMovieCard from "../../ui/components/FavouriteMovieCard/FavouriteMovieCard";
 import s from "./favourite.module.css";
 
-export const Favorites = () => {
+const Favorites = () => {
   const userInfo = useSelector(user);
 
   const { data: favouriteList = [] } = favouriteApi.useGetAllFavouritesQuery(
@@ -21,3 +21,5 @@ export const Favorites = () => {
     </div>
   );
 };
+
+export default Favorites;
