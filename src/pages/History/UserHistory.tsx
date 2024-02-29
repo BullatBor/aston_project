@@ -9,7 +9,7 @@ import Preloader from "../../ui/elements/Preloader/Preloader";
 const UserHistory = () => {
   const userInfo = useSelector(user);
   const { data: searchHistory } = historyApi.useGetHistoryQuery(
-    userInfo?.email
+    userInfo?.email,
   );
   return (
     <div className={s.wrapper}>
