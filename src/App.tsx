@@ -8,6 +8,8 @@ import WithAuthRequired from "./hoc/withAuthRequired";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorText } from "./ui/components/ErrorBoundary/ErrorBoundary";
 import Preloader from "./ui/elements/Preloader/Preloader";
+import { useAuth } from "./hooks/useAuth";
+
 const Favorites = lazy(() => import("./pages/Favorites/Favorites"));
 const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
 const UserHistory = lazy(() => import("./pages/History/UserHistory"));
@@ -16,17 +18,12 @@ const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const MoviePage = lazy(() => import("./pages/MoviePage/MoviePage"));
 
 function App() {
-  const dispatch = useDispatch();
-  const userInfo = useSelector(user);
+  const { reAuth } = useAuth();
+
   useEffect(() => {
+    const auth = reAuth();
     return () => {
-      const storedData = localStorage.getItem("user");
-      const myParsedObject = storedData ? JSON.parse(storedData) : {};
-      auth.onAuthStateChanged(async (myParsedObject) => {
-        if (myParsedObject) {
-          dispatch(setUser(myParsedObject));
-        }
-      });
+      auth();
     };
   }, []);
 

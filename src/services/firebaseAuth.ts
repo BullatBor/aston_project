@@ -2,24 +2,18 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  User,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
 import { auth, fireStore } from "../firebase-config";
-import { setIsLoading, setUser, user } from "../store/auth/authSlice";
-
-
 
 export function reAuth() {
-  return auth.onAuthStateChanged(async userInfo => {
+  return auth.onAuthStateChanged(async (userInfo) => {
     if (userInfo) {
-      return userInfo
+      return userInfo;
     }
-    //dispatch(setIsLoading(false));
-  })
+  });
 }
 
 export function fireBaseRegister(email: string, password: string) {
@@ -36,6 +30,7 @@ export function fireBaseRegister(email: string, password: string) {
     })
     .catch((error) => {
       toast.error(error.message);
+      return null;
     });
 }
 
@@ -44,6 +39,7 @@ export function fireBaseLogin(email: string, password: string) {
     .then((credentials) => credentials.user)
     .catch((error) => {
       toast.error(error.message);
+      return null;
     });
 }
 
