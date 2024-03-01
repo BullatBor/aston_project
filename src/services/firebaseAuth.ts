@@ -2,12 +2,25 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 import toast from "react-hot-toast";
-
+import { useDispatch, useSelector } from "react-redux";
 import { auth, fireStore } from "../firebase-config";
+import { setIsLoading, setUser, user } from "../store/auth/authSlice";
+
+
+
+export function reAuth() {
+  return auth.onAuthStateChanged(async userInfo => {
+    if (userInfo) {
+      return userInfo
+    }
+    //dispatch(setIsLoading(false));
+  })
+}
 
 export function fireBaseRegister(email: string, password: string) {
   return createUserWithEmailAndPassword(auth, email, password)

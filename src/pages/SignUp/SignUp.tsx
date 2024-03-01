@@ -15,6 +15,7 @@ export const SignUp = () => {
     if (user) {
       dispatch(setUser(user));
       dispatch(setIsLoading(false));
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     }
   };

@@ -15,6 +15,7 @@ export const SignIn = () => {
     const user = await fireBaseLogin(email, password);
     if (user) {
       dispatch(setUser(user));
+      localStorage.setItem("user", JSON.stringify(user));
       navigate("/");
     }
     dispatch(setIsLoading(false));

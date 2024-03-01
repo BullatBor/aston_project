@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Header } from "./ui/components/Header/Header";
 import { SignUp } from "./pages/SignUp/SignUp";
@@ -11,8 +11,26 @@ import { Toaster } from "react-hot-toast";
 import WithAuthRequired from "./hoc/withAuthRequired";
 import { MoviePage } from "./pages/MoviePage/MoviePage";
 import { SearchPage } from "./pages/SearchPage/SearchPage";
+import { reAuth } from "./services/firebaseAuth";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser, user } from "./store/auth/authSlice";
+import { auth } from "./firebase-config";
 
 function App() {
+  const dispatch = useDispatch();
+  const userInfo = useSelector(user);
+  useEffect(() => {
+    return () => {
+      const storedData = localStorage.getItem("user");
+      const myParsedObject = storedData ? JSON.parse(storedData) : {};
+      auth.onAuthStateChanged(async (myParsedObject) => {
+        if (myParsedObject) {
+          dispatch(setUser(myParsedObject));
+        }
+      });
+    };
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>
