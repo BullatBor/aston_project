@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useFavourites } from "../../hooks/useFavourites";
 import { ICollection } from "../../models/ICollection";
 import { movieApi } from "../../store/rtkQuery/movieApi";

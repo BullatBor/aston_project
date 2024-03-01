@@ -6,7 +6,7 @@ export const ErrorText = () => {
   return (
     <div className={s.wrapper}>
       <div>Что то пошло не так... </div>
-      <img src={errorImg} />
+      <img src={errorImg} alt="error" />
     </div>
   );
 };
