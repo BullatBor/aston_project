@@ -18,13 +18,11 @@ export const useAuth = () => {
 
   const reAuth = () => {
     return auth.onAuthStateChanged(async (user: any) => {
-
       if (user) {
         dispatch(setUser(user));
       } else {
         dispatch(setStatus("none"));
       }
-      
     });
   };
 
@@ -37,17 +35,13 @@ export const useAuth = () => {
     const user = await fireBaseRegister(email, password);
 
     if (user) {
-
       dispatch(setUser(user));
       dispatch(setIsLoading(false));
       return true;
-
     } else {
-
       dispatch(setStatus("none"));
       dispatch(setIsLoading(false));
       return false;
-
     }
   };
 
@@ -57,27 +51,21 @@ export const useAuth = () => {
     const user = await fireBaseLogin(email, password);
 
     if (user) {
-
       dispatch(setUser(user));
       dispatch(setIsLoading(false));
       return true;
-
     } else {
-
       dispatch(setStatus("none"));
       dispatch(setIsLoading(false));
       return false;
-
     }
   };
 
   const userLogout = async () => {
-
     dispatch(setIsLoading(true));
     await fireBaseLogout();
     dispatch(logout());
     dispatch(setIsLoading(false));
-
   };
 
   return {
