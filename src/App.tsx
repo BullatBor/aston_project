@@ -25,7 +25,7 @@ function App() {
     return () => {
       auth();
     };
-  }, []);
+  }, [reAuth]);
 
   return (
     <div className="App">
