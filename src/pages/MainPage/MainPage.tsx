@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useFavourites } from "../../hooks/useFavourites";
 import { ICollection } from "../../models/ICollection";
 import { movieApi } from "../../store/rtkQuery/movieApi";
@@ -9,6 +9,7 @@ import s from "./mainPage.module.css";
 export const MainPage = () => {
   const { data: movies } = movieApi.useGetMovieCollectionQuery(15);
   const { isLoading } = useFavourites();
+
   return (
     <div className={s.wrapper}>
       {movies && !isLoading ? (

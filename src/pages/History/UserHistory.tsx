@@ -6,7 +6,7 @@ import s from "./userHistory.module.css";
 import { HistoryItem } from "../../ui/components/historyItem/historyItem";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 
-export const UserHistory = () => {
+const UserHistory = () => {
   const userInfo = useSelector(user);
   const { data: searchHistory } = historyApi.useGetHistoryQuery(
     userInfo?.email,
@@ -23,3 +23,5 @@ export const UserHistory = () => {
     </div>
   );
 };
+
+export default UserHistory;

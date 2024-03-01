@@ -6,7 +6,7 @@ import { setIsLoading, setUser } from "../../store/auth/authSlice";
 import AuthForm from "../../ui/components/AuthForm/AuthForm";
 import s from "./signIn.module.css";
 
-export const SignIn = () => {
+const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,3 +26,5 @@ export const SignIn = () => {
     </div>
   );
 };
+
+export default SignIn;
