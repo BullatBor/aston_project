@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import "./App.css";
 import { Header } from "./ui/components/Header/Header";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,6 +8,8 @@ import WithAuthRequired from "./hoc/withAuthRequired";
 import { ErrorBoundary } from "react-error-boundary";
 import { ErrorText } from "./ui/components/ErrorBoundary/ErrorBoundary";
 import Preloader from "./ui/elements/Preloader/Preloader";
+import { useAuth } from "./hooks/useAuth";
+
 const Favorites = lazy(() => import("./pages/Favorites/Favorites"));
 const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
 const UserHistory = lazy(() => import("./pages/History/UserHistory"));
@@ -16,6 +18,15 @@ const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
 const MoviePage = lazy(() => import("./pages/MoviePage/MoviePage"));
 
 function App() {
+  const { reAuth } = useAuth();
+
+  useEffect(() => {
+    const auth = reAuth();
+    return () => {
+      auth();
+    };
+  }, []);
+
   return (
     <div className="App">
       <BrowserRouter>

@@ -1,23 +1,17 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fireBaseLogin } from "../../services/firebaseAuth";
-import { setIsLoading, setUser } from "../../store/auth/authSlice";
+import { useAuth } from "../../hooks/useAuth";
 import AuthForm from "../../ui/components/AuthForm/AuthForm";
 import s from "./signIn.module.css";
 
 const SignIn = () => {
-  const dispatch = useDispatch();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const onSubmitLogin = async (email: string, password: string) => {
-    dispatch(setIsLoading(true));
-    const user = await fireBaseLogin(email, password);
-    if (user) {
-      dispatch(setUser(user));
+    if (await login(email, password)) {
       navigate("/");
     }
-    dispatch(setIsLoading(false));
   };
   return (
     <div className={s.signForm}>

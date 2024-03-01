@@ -6,8 +6,15 @@ import {
 import { doc, setDoc } from "firebase/firestore";
 
 import toast from "react-hot-toast";
-
 import { auth, fireStore } from "../firebase-config";
+
+export function reAuth() {
+  return auth.onAuthStateChanged(async (userInfo) => {
+    if (userInfo) {
+      return userInfo;
+    }
+  });
+}
 
 export function fireBaseRegister(email: string, password: string) {
   return createUserWithEmailAndPassword(auth, email, password)
@@ -23,6 +30,7 @@ export function fireBaseRegister(email: string, password: string) {
     })
     .catch((error) => {
       toast.error(error.message);
+      return null;
     });
 }
 
@@ -31,6 +39,7 @@ export function fireBaseLogin(email: string, password: string) {
     .then((credentials) => credentials.user)
     .catch((error) => {
       toast.error(error.message);
+      return null;
     });
 }
 
