@@ -7,11 +7,21 @@ import { isAuth } from "../../../store/auth/authSlice";
 import { useSelector } from "react-redux";
 import logo from "../../../assets/icons/logo.jpg";
 import { Search } from "../Search/Search";
+import { useTheme } from "../../../context/ThemeContext";
+import cn from "classnames";
+import { ThemeButton } from "../ThemeButton/ThemeButton";
 
 export const Header = () => {
   const isLogged = useSelector(isAuth);
+  const { theme, toggleTheme } = useTheme();
+
   return (
-    <div className={s.header}>
+    <div
+      className={cn(s.header, {
+        [s.light]: theme === "light",
+        [s.dark]: theme === "dark",
+      })}
+    >
       <div className={s.leftPart}>
         <Link to={"*"}>
           <div className={s.logo}>
@@ -21,6 +31,9 @@ export const Header = () => {
         {isLogged && <Search />}
       </div>
       <div className={s.auth}>{isLogged ? <AuthButtons /> : <AuthLinks />}</div>
+      <div className={s.themeBtn}>
+        <ThemeButton />
+      </div>
     </div>
   );
 };

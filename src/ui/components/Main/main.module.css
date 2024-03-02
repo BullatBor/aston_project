@@ -1,0 +1,14 @@
+@import url("../../../assets/styles/colors.css");
+
+.wrapper {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 2s;
+}
+
+.dark {
+  background-color: var(--dark_back);
+}

@@ -3,6 +3,8 @@ import { ICollection } from "../../../models/ICollection";
 import Preloader from "../../elements/Preloader/Preloader";
 import s from "./Suggest.module.css";
 import { SuggestItem } from "./SuggestItem/SuggestItem";
+import cn from "classnames";
+import { useTheme } from "../../../context/ThemeContext";
 
 interface SuggestProps {
   movies: ICollection[] | null | undefined;
@@ -10,8 +12,16 @@ interface SuggestProps {
 }
 
 export const Suggest: FC<SuggestProps> = ({ movies, suggestRef }) => {
+  const { theme } = useTheme();
+
   return (
-    <div className={s.wrapper} ref={suggestRef}>
+    <div
+      className={cn(s.wrapper, {
+        [s.dark]: theme === "dark",
+        [s.light]: theme === "light",
+      })}
+      ref={suggestRef}
+    >
       {movies ? (
         movies.map((item) => <SuggestItem key={item.id} {...item} />)
       ) : (

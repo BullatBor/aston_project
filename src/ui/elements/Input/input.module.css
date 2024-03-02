@@ -6,13 +6,13 @@
   padding: 4px 16px;
   font-size: 16px;
   line-height: 19px;
-  background-color: var(--dark-white);
   border-radius: 15px;
   border: 0;
   box-shadow:
     rgba(0, 0, 0, 0.02) 0px 1px 3px 0px,
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
-  color: var(--pastel-blue);
+
+  transition: all 2s;
 }
 
 .input:focus-visible {
@@ -27,4 +27,13 @@
   background-color: transparent;
   width: 100%;
   height: 51px;
+}
+
+.dark {
+  background-color: var(--gray);
+}
+
+.light {
+  background-color: var(--dark-white);
+  color: var(--pastel-blue);
 }

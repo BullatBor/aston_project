@@ -1,6 +1,7 @@
 import React, { LegacyRef } from "react";
 import cn from "classnames";
 import s from "./input.module.css";
+import { useTheme } from "../../../context/ThemeContext";
 
 interface InputProps {
   value?: string;
@@ -23,6 +24,8 @@ export const Input = ({
   inputRef,
   onFocus,
 }: InputProps) => {
+  const { theme } = useTheme();
+
   return (
     <div className={s.inputContainer}>
       <input
@@ -31,7 +34,10 @@ export const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={cn(s.input, className)}
+        className={cn(s.input, className, {
+          [s.dark]: theme === "dark",
+          [s.light]: theme === "light",
+        })}
         ref={inputRef}
         onFocus={onFocus}
       />

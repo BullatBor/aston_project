@@ -4,12 +4,14 @@ import PropTypes from "prop-types";
 import { TPreloaderProps } from "./Preloader.types";
 
 import styles from "./Preloader.module.css";
+import { useTheme } from "../../../context/ThemeContext";
 
 const Preloader: React.FC<TPreloaderProps> = ({
   width = 20,
   className = "",
 }): JSX.Element => {
-  const hexColor = "#000";
+  const { theme } = useTheme();
+  const hexColor = theme === "dark" ? "#fff" : "#000";
 
   return (
     <div className={cn(styles.root, className)} style={{ width: `${width}px` }}>

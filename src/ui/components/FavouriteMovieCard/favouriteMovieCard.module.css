@@ -4,12 +4,12 @@
   display: flex;
   padding: 15px 25px;
   width: 600px;
-  background-color: var(--dark-white);
   gap: 20px;
   border-radius: 15px;
   box-shadow:
     rgba(0, 0, 0, 0.16) 0px 3px 6px,
     rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  transition: all 2s;
 }
 
 .poster {
@@ -94,4 +94,13 @@
   width: 100%;
   align-items: center;
   padding: 45px 0;
+}
+
+.dark {
+  background-color: var(--gray);
+  outline: var(--pastel-blue) 2px solid;
+}
+
+.light {
+  background-color: var(--dark-white);
 }
