@@ -9,7 +9,7 @@
   border-radius: 5px;
   cursor: pointer;
   gap: 10px;
-  background-color: var(--pastel-biryz);
+  transition: all 2s;
 }
 
 .wrapper img {
@@ -38,4 +38,12 @@
 
 .text {
   font-size: 14px;
+}
+
+.dark {
+  background-color: var(--pastel-biryz);
+}
+
+.light {
+  background-color: var(--pastel-biryz);
 }

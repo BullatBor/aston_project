@@ -21,20 +21,18 @@ const Button = ({
   disabled = false,
 }: ButtonProps) => {
   return (
-    <div className={s.buttonContainer}>
-      <button
-        type={type}
-        onClick={onClick}
-        disabled={disabled}
-        className={cn(s.button, className, {
-          [s.green]: variant === "green",
-          [s.red]: variant === "red",
-          [s.blue]: variant === "blue",
-        })}
-      >
-        {children}
-      </button>
-    </div>
+    <button
+      type={type}
+      onClick={onClick}
+      disabled={disabled}
+      className={cn(s.button, className, {
+        [s.green]: variant === "green",
+        [s.red]: variant === "red",
+        [s.blue]: variant === "blue",
+      })}
+    >
+      {children}
+    </button>
   );
 };
 

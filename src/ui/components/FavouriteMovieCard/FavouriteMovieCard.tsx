@@ -4,6 +4,8 @@ import { movieApi } from "../../../store/rtkQuery/movieApi";
 import Preloader from "../../elements/Preloader/Preloader";
 import { FavouriteButton } from "../FavouriteButton/FavouriteButton";
 import s from "./favouriteMovieCard.module.css";
+import cn from "classnames";
+import { useTheme } from "../../../context/ThemeContext";
 
 interface FavouriteMovieCardProps {
   id: number;
@@ -11,6 +13,7 @@ interface FavouriteMovieCardProps {
 
 const FavouriteMovieCard = ({ id }: FavouriteMovieCardProps) => {
   const { data: movieInfo } = movieApi.useGetMovieQuery(id);
+  const { theme } = useTheme();
 
   const navigate = useNavigate();
 
@@ -20,7 +23,12 @@ const FavouriteMovieCard = ({ id }: FavouriteMovieCardProps) => {
 
   return (
     <>
-      <div className={s.wrapper}>
+      <div
+        className={cn(s.wrapper, {
+          [s.dark]: theme === "dark",
+          [s.light]: theme === "light",
+        })}
+      >
         {movieInfo ? (
           <>
             <div className={s.poster}>

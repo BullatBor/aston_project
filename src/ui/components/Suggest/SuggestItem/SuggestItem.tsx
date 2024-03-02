@@ -2,6 +2,8 @@ import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICollection } from "../../../../models/ICollection";
 import s from "./suggestItem.module.css";
+import cn from "classnames";
+import { useTheme } from "../../../../context/ThemeContext";
 
 export const SuggestItem: FC<ICollection> = ({
   name,
@@ -11,13 +13,20 @@ export const SuggestItem: FC<ICollection> = ({
   id,
 }) => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const itemHandler = () => {
     navigate(`/movie/${id}`);
   };
 
   return (
-    <div className={s.wrapper} onClick={itemHandler}>
+    <div
+      className={cn(s.wrapper, {
+        [s.dark]: theme === "dark",
+        [s.light]: theme === "light",
+      })}
+      onClick={itemHandler}
+    >
       <div className={s.poster}>
         <img src={poster.previewUrl} alt="постер" />
       </div>

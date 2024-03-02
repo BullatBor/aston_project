@@ -2,13 +2,23 @@
 
 .header {
   height: 60px;
-  background-color: var(--white);
   padding: 0 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid gray;
   position: relative;
+  transition: all 2s;
+}
+
+.dark {
+  background-color: var(--dark_back);
+  border-bottom: 1px solid var(--white);
+  color: var(--dark-white);
+}
+
+.light {
+  background-color: var(--white);
+  border-bottom: 1px solid gray;
 }
 
 .logo {
@@ -30,6 +40,7 @@
   cursor: pointer;
   text-decoration: none;
   color: black;
+  transition: all 2s;
 }
 
 .authLink a:hover {
@@ -41,4 +52,12 @@
   gap: 50px;
   height: 100%;
   align-items: center;
+}
+
+.themeBtn {
+  position: absolute;
+  right: 25px;
+  top: 54%;
+  transform: translate(-50%, -50%);
+  height: auto;
 }

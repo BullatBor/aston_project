@@ -1,21 +1,10 @@
-import React, { Suspense, lazy, useEffect } from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 import { Header } from "./ui/components/Header/Header";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { MainPage } from "./pages/MainPage/MainPage";
-import { Toaster } from "react-hot-toast";
-import WithAuthRequired from "./hoc/withAuthRequired";
-import { ErrorBoundary } from "react-error-boundary";
-import { ErrorText } from "./ui/components/ErrorBoundary/ErrorBoundary";
-import Preloader from "./ui/elements/Preloader/Preloader";
+import { BrowserRouter } from "react-router-dom";
 import { useAuth } from "./hooks/useAuth";
-
-const Favorites = lazy(() => import("./pages/Favorites/Favorites"));
-const SearchPage = lazy(() => import("./pages/SearchPage/SearchPage"));
-const UserHistory = lazy(() => import("./pages/History/UserHistory"));
-const SignIn = lazy(() => import("./pages/SignIn/SignIn"));
-const SignUp = lazy(() => import("./pages/SignUp/SignUp"));
-const MoviePage = lazy(() => import("./pages/MoviePage/MoviePage"));
+import { ThemeProvider } from "./context/ThemeProvider";
+import { Main } from "./ui/components/Main/Main";
 
 function App() {
   const { reAuth } = useAuth();
@@ -29,46 +18,12 @@ function App() {
 
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <div className="pages">
-          <ErrorBoundary fallbackRender={ErrorText}>
-            <Suspense fallback={<Preloader width={50} />}>
-              <Routes>
-                <Route path="*" element={<MainPage />} />
-                <Route path="signIn" element={<SignIn />} />
-                <Route path="signUp" element={<SignUp />} />
-                <Route
-                  path="favorites"
-                  element={
-                    <WithAuthRequired>
-                      <Favorites />
-                    </WithAuthRequired>
-                  }
-                />
-                <Route
-                  path="history"
-                  element={
-                    <WithAuthRequired>
-                      <UserHistory />
-                    </WithAuthRequired>
-                  }
-                />
-                <Route
-                  path="search/:query?"
-                  element={
-                    <WithAuthRequired>
-                      <SearchPage />
-                    </WithAuthRequired>
-                  }
-                />
-                <Route path="movie/:id?" element={<MoviePage />} />
-              </Routes>
-              <Toaster position="top-center" reverseOrder={false} />
-            </Suspense>
-          </ErrorBoundary>
-        </div>
-      </BrowserRouter>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Header />
+          <Main />
+        </BrowserRouter>
+      </ThemeProvider>
     </div>
   );
 }

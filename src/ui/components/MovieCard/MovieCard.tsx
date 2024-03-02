@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { ICollection } from "../../../models/ICollection";
 import { FavouriteButton } from "../FavouriteButton/FavouriteButton";
 import s from "./movieCard.module.css";
+import cn from "classnames";
+import { useTheme } from "../../../context/ThemeContext";
 
 const MovieCard = ({
   name,
@@ -14,13 +16,19 @@ const MovieCard = ({
   id,
 }: ICollection) => {
   const navigate = useNavigate();
+  const { theme } = useTheme();
 
   const movieLinkHandler = (id: number) => {
     navigate(`/movie/${id}`);
   };
 
   return (
-    <div className={s.wrapper}>
+    <div
+      className={cn(s.wrapper, {
+        [s.dark]: theme === "dark",
+        [s.light]: theme === "light",
+      })}
+    >
       <div className={s.poster}>
         <img
           src={poster.url}

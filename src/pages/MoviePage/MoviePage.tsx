@@ -4,9 +4,12 @@ import { useParams } from "react-router-dom";
 import { movieApi } from "../../store/rtkQuery/movieApi";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 import { FavouriteButton } from "../../ui/components/FavouriteButton/FavouriteButton";
+import cn from "classnames";
+import { useTheme } from "../../context/ThemeContext";
 
 const MoviePage = () => {
   const { id } = useParams();
+  const { theme } = useTheme();
 
   if (!id) {
     return <div>Упс, что то пошло не так</div>;
@@ -16,7 +19,12 @@ const MoviePage = () => {
   return (
     <div className={s.wrapper}>
       {movieInfo ? (
-        <div className={s.card}>
+        <div
+          className={cn(s.card, {
+            [s.dark]: theme === "dark",
+            [s.light]: theme === "light",
+          })}
+        >
           <div className={s.main}>
             <div className={s.leftPart}>
               <img src={movieInfo.poster.url} alt="poster" />
