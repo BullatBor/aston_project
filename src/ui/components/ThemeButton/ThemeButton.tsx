@@ -25,7 +25,11 @@ export const ThemeButton = () => {
         [s.dark]: theme === "dark",
       })}
     >
-      {theme === "light" ? <img src={lightTheme} /> : <img src={darkTheme} />}
+      {theme === "light" ? (
+        <img src={lightTheme} alt="lightTheme" />
+      ) : (
+        <img src={darkTheme} alt="darkTheme" />
+      )}
     </Button>
   );
 };

@@ -13,7 +13,7 @@ import { ThemeButton } from "../ThemeButton/ThemeButton";
 
 export const Header = () => {
   const isLogged = useSelector(isAuth);
-  const { theme, toggleTheme } = useTheme();
+  const { theme } = useTheme();
 
   return (
     <div

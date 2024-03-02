@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { useState } from "react";
 import { AppThemeContext } from "./ThemeContext";
 
 interface ThemeProviderProps {
