@@ -17,9 +17,7 @@ export const MainPage = () => {
           <MovieCard key={movie.id} {...movie} />
         ))
       ) : (
-        <div className={s.preloader}>
-          <Preloader width={40} />
-        </div>
+        <Preloader width={40} />
       )}
     </div>
   );

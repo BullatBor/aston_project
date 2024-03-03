@@ -24,9 +24,7 @@ const SearchPage = () => {
           <EmptyTitle title="Ничего не нашлось" />
         )
       ) : (
-        <div className={s.preloader}>
-          <Preloader width={45} />
-        </div>
+        <Preloader width={45} />
       )}
     </div>
   );

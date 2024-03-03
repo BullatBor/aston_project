@@ -15,8 +15,6 @@ export const useHistory = () => {
     dispatch(changeSearhText(text));
   };
 
-  //const [searchText, setSearchText] = useState<string>("");
-
   const [addInHistory, addResult] = historyApi.useAddToHistoryMutation();
 
   const [removeHistory, removeResult] =
@@ -26,9 +24,9 @@ export const useHistory = () => {
     try {
       const searchQuery = { title: text, url: `/search/${text}` };
 
-      if (searchText.length > 0) {
+      if (text.length > 0) {
         await addInHistory({ email: userInfo?.email, searchQuery });
-        navigate(`search/${searchText}`);
+        navigate(`search/${text}`);
       } else {
         toast.error("Поле не должно быть пустым");
       }

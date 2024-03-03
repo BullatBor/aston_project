@@ -26,9 +26,7 @@ const UserHistory = () => {
           <EmptyTitle title="Ничего нет" />
         )
       ) : (
-        <div className={s.preloader}>
-          <Preloader width={45} />
-        </div>
+        <Preloader width={45} />
       )}
     </div>
   );

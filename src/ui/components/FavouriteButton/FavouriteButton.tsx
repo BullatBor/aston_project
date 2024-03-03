@@ -8,14 +8,19 @@ import Preloader from "../../elements/Preloader/Preloader";
 
 interface FavourButtonType {
   movieId: number;
+  isFavourPage?: boolean;
 }
 
-export const FavouriteButton = ({ movieId }: FavourButtonType) => {
+export const FavouriteButton = ({
+  movieId,
+  isFavourPage = false,
+}: FavourButtonType) => {
   const {
     handleAddToFavourite,
     isFetching,
     handleRemoveFromFavourite,
     hasInFavourite,
+    isRemoveClick,
   } = useFavourites();
 
   const [isHas, setHas] = useState<boolean>(hasInFavourite(movieId));
@@ -38,6 +43,18 @@ export const FavouriteButton = ({ movieId }: FavourButtonType) => {
       toast.error("Чтобы продолжить надо авторизоваться");
     }
   };
+
+  if (isFavourPage) {
+    return (
+      <Button
+        variant="red"
+        onClick={() => removeHandler(movieId)}
+        disabled={isRemoveClick}
+      >
+        {isRemoveClick ? <Preloader width={15} /> : "Удалить из избранного"}
+      </Button>
+    );
+  }
 
   return (
     <>

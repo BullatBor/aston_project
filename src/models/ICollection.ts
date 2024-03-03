@@ -1,8 +1,8 @@
 export interface ICollection {
   id: number;
-  name: string;
-  description: string;
-  shortDescription: string;
+  name?: string;
+  description?: string;
+  shortDescription?: string;
   genres: { name: string }[];
   budget: { currency: string; value: number };
   year: number;
