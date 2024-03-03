@@ -4,6 +4,7 @@ import { movieApi } from "../../store/rtkQuery/movieApi";
 import MovieCard from "../../ui/components/MovieCard/MovieCard";
 import Preloader from "../../ui/elements/Preloader/Preloader";
 import s from "./searchPage.module.css";
+import { EmptyTitle } from "../../ui/components/EmptyTitle/EmptyTitle";
 
 const SearchPage = () => {
   const { query } = useParams();
@@ -17,7 +18,11 @@ const SearchPage = () => {
   return (
     <div className={s.wrapper}>
       {searchResult ? (
-        searchResult.map((item) => <MovieCard key={item.id} {...item} />)
+        searchResult.length > 0 ? (
+          searchResult.map((item) => <MovieCard key={item.id} {...item} />)
+        ) : (
+          <EmptyTitle title="Ничего не нашлось" />
+        )
       ) : (
         <div className={s.preloader}>
           <Preloader width={45} />
