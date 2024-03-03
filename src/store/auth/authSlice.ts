@@ -36,7 +36,7 @@ const userSlice = createSlice({
     },
     setStatus: (
       state,
-      action: PayloadAction<"pending" | "success" | "none">
+      action: PayloadAction<"pending" | "success" | "none">,
     ) => {
       state.signStatus = action.payload;
     },

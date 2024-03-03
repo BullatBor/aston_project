@@ -10,7 +10,7 @@ import { EmptyTitle } from "../../ui/components/EmptyTitle/EmptyTitle";
 const UserHistory = () => {
   const userInfo = useSelector(user);
   const { data: searchHistory } = historyApi.useGetHistoryQuery(
-    userInfo?.email
+    userInfo?.email,
   );
 
   return (

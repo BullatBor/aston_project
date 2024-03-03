@@ -14,9 +14,9 @@ export const useDebounce = () => {
     () =>
       debounce(
         (userInput: string) => trigger({ name: userInput, limit: 5 }),
-        2000
+        2000,
       ),
-    [trigger]
+    [trigger],
   );
 
   useEffect(() => {
