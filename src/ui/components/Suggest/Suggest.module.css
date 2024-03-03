@@ -38,9 +38,13 @@
 }
 
 .dark {
-  background-color: var(--gray);
+  background-color: var(--dark-green);
 }
 
 .light {
   background-color: var(--dark-white);
+}
+
+.emptyTitle {
+  font-size: 18px !important;
 }

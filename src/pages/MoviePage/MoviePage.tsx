@@ -66,9 +66,7 @@ const MoviePage = () => {
           </div>
         </div>
       ) : (
-        <div className={s.preloader}>
-          <Preloader width={30} />
-        </div>
+        <Preloader width={45} />
       )}
     </div>
   );

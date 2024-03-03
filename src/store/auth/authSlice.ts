@@ -7,6 +7,7 @@ interface initialStateType {
   isLoading: boolean;
   isAuth: boolean;
   signStatus: "pending" | "success" | "none";
+  searchText: string;
 }
 
 let initialState: initialStateType = {
@@ -14,6 +15,7 @@ let initialState: initialStateType = {
   isLoading: false,
   isAuth: false,
   signStatus: "pending",
+  searchText: "",
 };
 
 const userSlice = createSlice({
@@ -38,6 +40,9 @@ const userSlice = createSlice({
     ) => {
       state.signStatus = action.payload;
     },
+    changeSearhText: (state, action: PayloadAction<string>) => {
+      state.searchText = action.payload;
+    },
   },
 });
 
@@ -45,6 +50,8 @@ export const isLoading = (state: RootState) => state.userReducer.isLoading;
 export const user = (state: RootState) => state.userReducer.user;
 export const isAuth = (state: RootState) => state.userReducer.isAuth;
 export const signStatus = (state: RootState) => state.userReducer.signStatus;
+export const searchText = (state: RootState) => state.userReducer.searchText;
 
-export const { setUser, logout, setIsLoading, setStatus } = userSlice.actions;
+export const { setUser, logout, setIsLoading, setStatus, changeSearhText } =
+  userSlice.actions;
 export default userSlice.reducer;

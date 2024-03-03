@@ -23,11 +23,6 @@
   gap: 20px;
 }
 
-.preloader {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .leftPart img {
   width: 200px;
   height: 280px;

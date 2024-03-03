@@ -66,7 +66,7 @@ const FavouriteMovieCard = ({ id }: FavouriteMovieCardProps) => {
                 </div>
               </div>
               <div className={s.buttons}>
-                <FavouriteButton movieId={id} />
+                <FavouriteButton movieId={id} isFavourPage={true} />
               </div>
             </div>
           </>
