@@ -1,15 +1,21 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { user } from "../store/auth/authSlice";
+import { changeSearhText, searchText, user } from "../store/auth/authSlice";
 import { historyApi } from "../store/rtkQuery/historyApi";
 
 export const useHistory = () => {
   const userInfo = useSelector(user);
   const navigate = useNavigate();
+  const text = useSelector(searchText);
+  const dispatch = useDispatch();
 
-  const [searchText, setSearchText] = useState<string>("");
+  const ChangeText = (text: string) => {
+    dispatch(changeSearhText(text));
+  };
+
+  //const [searchText, setSearchText] = useState<string>("");
 
   const [addInHistory, addResult] = historyApi.useAddToHistoryMutation();
 
@@ -18,7 +24,7 @@ export const useHistory = () => {
 
   const handleAddToHistory = async () => {
     try {
-      const searchQuery = { title: searchText, url: `/search/${searchText}` };
+      const searchQuery = { title: text, url: `/search/${text}` };
 
       if (searchText.length > 0) {
         await addInHistory({ email: userInfo?.email, searchQuery });
@@ -45,7 +51,7 @@ export const useHistory = () => {
     isFetching: addResult.isLoading || removeResult.isLoading,
     handleAddToHistory,
     handleRemoveFromHistory,
-    searchText,
-    setSearchText,
+    searchText: text,
+    setSearchText: ChangeText,
   };
 };

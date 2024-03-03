@@ -17,9 +17,9 @@ export const Search = () => {
 
   const { handleInputChange, currentData } = useDebounce();
 
-  const changeHandler = (e: any) => {
+  const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
-    handleInputChange(e.target.value);
+    handleInputChange();
   };
 
   const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {

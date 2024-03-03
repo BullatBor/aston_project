@@ -6,6 +6,8 @@ import Preloader from "../../elements/Preloader/Preloader";
 import s from "./historyItem.module.css";
 import cn from "classnames";
 import { useTheme } from "../../../context/ThemeContext";
+import { useDispatch } from "react-redux";
+import { changeSearhText } from "../../../store/auth/authSlice";
 
 interface historyItemProps {
   title: string;
@@ -16,8 +18,10 @@ export const HistoryItem: FC<historyItemProps> = ({ title, url }) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
   const { handleRemoveFromHistory, isFetching } = useHistory();
+  const dispatch = useDispatch();
 
   const handleItemClick = () => {
+    dispatch(changeSearhText(title));
     navigate(url);
   };
 
