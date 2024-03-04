@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +10,13 @@ export const useHistory = () => {
   const navigate = useNavigate();
   const text = useSelector(searchText);
   const dispatch = useDispatch();
+  const { isFetching } = historyApi.useGetHistoryQuery(userInfo?.email);
+
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isFetching) setIsLoad(isFetching);
+  }, [isFetching]);
 
   const ChangeText = (text: string) => {
     dispatch(changeSearhText(text));
@@ -21,6 +29,7 @@ export const useHistory = () => {
 
   const handleAddToHistory = async () => {
     try {
+      setIsLoad(true);
       const searchQuery = { title: text, url: `/search/${text}` };
 
       if (text.length > 0) {
@@ -36,6 +45,7 @@ export const useHistory = () => {
 
   const handleRemoveFromHistory = async (title: string, url: string) => {
     try {
+      setIsLoad(true);
       const searchQuery = { title, url };
       await removeHistory({ email: userInfo?.email, searchQuery });
       toast.success("Успешно удалено");
@@ -45,7 +55,7 @@ export const useHistory = () => {
   };
 
   return {
-    isFetching: addResult.isLoading || removeResult.isLoading,
+    isFetching: addResult.isLoading || removeResult.isLoading || isLoad,
     handleAddToHistory,
     handleRemoveFromHistory,
     searchText: text,
