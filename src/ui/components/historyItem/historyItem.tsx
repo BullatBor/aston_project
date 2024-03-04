@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { useHistory } from "../../../hooks/useHistory";
-import Button from "../../elements/Button/Button";
+import { Button } from "../../elements/Button/Button";
 import Preloader from "../../elements/Preloader/Preloader";
 import s from "./historyItem.module.css";
 import cn from "classnames";
