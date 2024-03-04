@@ -1,46 +1,66 @@
-# Getting Started with Create React App
+# aston-project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[![Actions](https://github.com/BullatBor/aston_project/actions/workflows/checks.yml/badge.svg)](https://github.com/BullatBor/aston_project/actions/workflows/checks.yml)
 
-## Available Scripts
+- Предметная область: приложение для информации о фильмах.
+- Использованное API: [Кинопоиск](https://api.kinopoisk.dev/)
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Основной функционал
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Регистрация и авторизация пользователей в FireBase
+- Страница избранного: пользователь может добавлять или удалять из списка избранных
+- Поиск по названию фильма, выпадающее меня при поиске
+- История поиска: сохранение текста введенного в поисковую строку, возможность перейти на страницу поиска после нажатия на блок с текстом поиска
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+---
 
-### `npm test`
+## Реализация требований
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 1 уровень (обязательный - необходимый минимум)
 
-### `npm run build`
+- [x] Реализованы Требования к функциональности.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### React
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [x] Пишем функциональные компоненты c хуками: [components](src/ui/components), [pages](src/pages).
+- [x] Есть разделение на [умные](src/pages/MainPage/MainPage.tsx) и [глупые](src\ui\elements\Button\Button.tsx) компоненты.
+- [x] Есть рендеринг [списков](src/pages/MainPage/MainPage.tsx).
+- [x] Реализована хотя бы одна [форма](src\ui\components\AuthButtons\AuthButtons.tsx).
+- [x] Есть применение Контекст API: [themeContext](src\context\ThemeContext.ts).
+- [x] Есть применение предохранителя: [ErrorBoundary](src/app.tsx), [Fallback](src\ui\components\ErrorBoundary\ErrorBoundary.tsx).
+- [x] Есть хотя бы один кастомный хук: [useAuth](src/hooks/useAuth.ts), [useDebounce](src/hooks/useDebounce.ts), [useFavourites](src/hooks/useFavourites.ts),[useHistory](src/hooks/useHistory.ts),[useSuggest](src/hooks/useSuggest.ts).
+- [x] Хотя бы несколько компонентов используют PropTypes: [Button](src\ui\elements\Button\Button.tsx), [AuthForm](src\ui\components\AuthForm\AuthForm.tsx), [Preloader](src\ui\elements\Preloader\Preloader.tsx).
+- [x] Поиск не должен триггерить много запросов к серверу ([debounce](src\ui\components\Search\Search.tsx), [useDebounce](src/hooks/useDebounce.ts)).
+- [x] Есть применение [lazy + Suspense](src\ui\components\Main\Main.tsx).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Redux
 
-### `npm run eject`
+- [x] Используем Modern Redux with Redux Toolkit: [store](src/store/store.ts).
+- [x] Используем слайсы: [userSlise](src\store\auth\authSlice.ts).
+- [] Есть хотя бы одна кастомная мидлвара: [user-middleware](src/store/middlewares/user-middleware.ts).
+- [x] Используется RTK Query: [favouriteApi](src\store\rtkQuery\favoritesApi.ts), [movieApi](src\store\rtkQuery\movieApi.ts), [historyApi](src\store\rtkQuery\historyApi.ts).
+- [x] Используется Transforming Responses: [movieApi](src\store\rtkQuery\movieApi.ts).
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+---
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 2 уровень (необязательный)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- [x] Используется TypeScript
+- [x] Использвуется Firebase: [auth](src/hooks/useAuth.ts), [favourite](src/hooks/useFavourites.ts), [history](src/hooks/useHistory.ts)
+- [x] Настроен CI/CD: [actions.yml](.github\workflows\checks.yml)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+### Дополнительные библиотеки, которые использовались
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- classnames для удобства работы с css modules
+- formik и yup для валидации данных [формы](src/ui/components/AuthForm/AuthForm.tsx)
+- lodash.debounce для задержки поиска фильмов [debounce](src/hooks/useDebounce.ts)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+---
+
+### Deploy
+
+[project](https://bullatbor.github.io/aston_project/)

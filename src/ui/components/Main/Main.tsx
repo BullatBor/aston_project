@@ -1,11 +1,9 @@
 import React, { lazy, Suspense } from "react";
-import { ErrorBoundary } from "react-error-boundary";
 import { Toaster } from "react-hot-toast";
 import { Routes, Route } from "react-router-dom";
 import WithAuthRequired from "../../../hoc/withAuthRequired";
 import { MainPage } from "../../../pages/MainPage/MainPage";
 import Preloader from "../../elements/Preloader/Preloader";
-import { ErrorText } from "../ErrorBoundary/ErrorBoundary";
 import s from "./main.module.css";
 import cn from "classnames";
 import { useTheme } from "../../../context/ThemeContext";
@@ -27,41 +25,39 @@ export const Main = () => {
         [s.light]: theme === "light",
       })}
     >
-      <ErrorBoundary fallbackRender={ErrorText}>
-        <Suspense fallback={<Preloader width={50} />}>
-          <Routes>
-            <Route path="*" element={<MainPage />} />
-            <Route path="signIn" element={<SignIn />} />
-            <Route path="signUp" element={<SignUp />} />
-            <Route
-              path="favorites"
-              element={
-                <WithAuthRequired>
-                  <Favorites />
-                </WithAuthRequired>
-              }
-            />
-            <Route
-              path="history"
-              element={
-                <WithAuthRequired>
-                  <UserHistory />
-                </WithAuthRequired>
-              }
-            />
-            <Route
-              path="search/:query?"
-              element={
-                <WithAuthRequired>
-                  <SearchPage />
-                </WithAuthRequired>
-              }
-            />
-            <Route path="movie/:id?" element={<MoviePage />} />
-          </Routes>
-          <Toaster position="top-center" reverseOrder={false} />
-        </Suspense>
-      </ErrorBoundary>
+      <Suspense fallback={<Preloader width={50} />}>
+        <Routes>
+          <Route path="*" element={<MainPage />} />
+          <Route path="signIn" element={<SignIn />} />
+          <Route path="signUp" element={<SignUp />} />
+          <Route
+            path="favorites"
+            element={
+              <WithAuthRequired>
+                <Favorites />
+              </WithAuthRequired>
+            }
+          />
+          <Route
+            path="history"
+            element={
+              <WithAuthRequired>
+                <UserHistory />
+              </WithAuthRequired>
+            }
+          />
+          <Route
+            path="search/:query?"
+            element={
+              <WithAuthRequired>
+                <SearchPage />
+              </WithAuthRequired>
+            }
+          />
+          <Route path="movie/:id?" element={<MoviePage />} />
+        </Routes>
+        <Toaster position="top-center" reverseOrder={false} />
+      </Suspense>
     </div>
   );
 };
