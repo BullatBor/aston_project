@@ -1,13 +1,13 @@
-import { Field, Form, Formik } from "formik";
-import React from "react";
-import s from "./authForm.module.css";
-import cn from "classnames";
-import * as Yup from "yup";
-import Button from "../../elements/Button/Button";
-import { useSelector } from "react-redux";
-import { isLoading } from "../../../store/auth/authSlice";
-import Preloader from "../../elements/Preloader/Preloader";
-import PropTypes from "prop-types";
+import { Field, Form, Formik } from 'formik';
+import React from 'react';
+import s from './authForm.module.css';
+import cn from 'classnames';
+import * as Yup from 'yup';
+import Button from '../../elements/Button/Button';
+import { useSelector } from 'react-redux';
+import { isLoading } from '../../../store/auth/authSlice';
+import Preloader from '../../elements/Preloader/Preloader';
+import PropTypes from 'prop-types';
 
 interface AuthFormProps {
   headerTitle: string;
@@ -17,10 +17,10 @@ const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
   const isLoad = useSelector(isLoading);
 
   const SignupSchema = Yup.object().shape({
-    email: Yup.string().email("Неверный email").required("Обязательное поле"),
+    email: Yup.string().email('Неверный email').required('Обязательное поле'),
     password: Yup.string()
-      .min(6, "Длина пароля 6 символов")
-      .required("Обязательное поле"),
+      .min(6, 'Длина пароля 6 символов')
+      .required('Обязательное поле'),
   });
   return (
     <div className={s.main}>
@@ -29,8 +29,8 @@ const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
       </div>
       <Formik
         initialValues={{
-          email: "",
-          password: "",
+          email: '',
+          password: '',
         }}
         validationSchema={SignupSchema}
         onSubmit={(values) => {
@@ -44,9 +44,9 @@ const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
                 <span>Почта</span>
                 <div className={s.inputBlock}>
                   <Field
-                    name="email"
-                    type="email"
-                    placeholder="email"
+                    name='email'
+                    type='email'
+                    placeholder='email'
                     className={cn(s.input, {
                       [s.error]: errors.email && touched.email,
                     })}
@@ -60,9 +60,9 @@ const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
                 <span>Пароль</span>
                 <div className={s.inputBlock}>
                   <Field
-                    name="password"
-                    type="password"
-                    placeholder="password"
+                    name='password'
+                    type='password'
+                    placeholder='password'
                     className={cn(s.input, {
                       [s.error]: errors.password && touched.password,
                     })}
@@ -74,7 +74,7 @@ const AuthForm = ({ onSubmit, headerTitle }: AuthFormProps) => {
               </div>
             </div>
             <div className={s.submit}>
-              <Button type="submit" variant="green" disabled={isLoad}>
+              <Button type='submit' variant='green' disabled={isLoad}>
                 {isLoad ? <Preloader /> : headerTitle}
               </Button>
             </div>

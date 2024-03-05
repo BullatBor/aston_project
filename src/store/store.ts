@@ -17,7 +17,9 @@ const setupStore = () =>
   configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat([
+      getDefaultMiddleware({
+        serializableCheck: false,
+      }).concat([
         movieApi.middleware,
         favouriteApi.middleware,
         historyApi.middleware,
