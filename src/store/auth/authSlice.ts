@@ -1,12 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "firebase/auth";
-import { RootState } from "../store";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { User } from 'firebase/auth';
+import { RootState } from '../store';
 
 interface initialStateType {
   user: User | null;
   isLoading: boolean;
   isAuth: boolean;
-  signStatus: "pending" | "success" | "none";
+  signStatus: 'pending' | 'success' | 'none';
   searchText: string;
 }
 
@@ -14,18 +14,18 @@ let initialState: initialStateType = {
   user: null,
   isLoading: false,
   isAuth: false,
-  signStatus: "pending",
-  searchText: "",
+  signStatus: 'pending',
+  searchText: '',
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState,
   reducers: {
     setUser(state, action: PayloadAction<User>) {
       state.user = action.payload;
       state.isAuth = true;
-      state.signStatus = "success";
+      state.signStatus = 'success';
     },
     logout(state) {
       state.user = null;
@@ -36,7 +36,7 @@ const userSlice = createSlice({
     },
     setStatus: (
       state,
-      action: PayloadAction<"pending" | "success" | "none">,
+      action: PayloadAction<'pending' | 'success' | 'none'>
     ) => {
       state.signStatus = action.payload;
     },
