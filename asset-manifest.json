@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/aston_project/static/css/main.d1057902.css",
-    "main.js": "/aston_project/static/js/main.26b0108c.js",
+    "main.js": "/aston_project/static/js/main.0aab51c7.js",
     "static/css/27.941afbf6.chunk.css": "/aston_project/static/css/27.941afbf6.chunk.css",
     "static/js/27.70293852.chunk.js": "/aston_project/static/js/27.70293852.chunk.js",
     "static/css/313.29592544.chunk.css": "/aston_project/static/css/313.29592544.chunk.css",
@@ -22,7 +22,7 @@
     "static/media/lightTheme.png": "/aston_project/static/media/lightTheme.c8fa9d09ca5161475412.png",
     "index.html": "/aston_project/index.html",
     "main.d1057902.css.map": "/aston_project/static/css/main.d1057902.css.map",
-    "main.26b0108c.js.map": "/aston_project/static/js/main.26b0108c.js.map",
+    "main.0aab51c7.js.map": "/aston_project/static/js/main.0aab51c7.js.map",
     "27.941afbf6.chunk.css.map": "/aston_project/static/css/27.941afbf6.chunk.css.map",
     "27.70293852.chunk.js.map": "/aston_project/static/js/27.70293852.chunk.js.map",
     "313.29592544.chunk.css.map": "/aston_project/static/css/313.29592544.chunk.css.map",
@@ -40,6 +40,6 @@
   },
   "entrypoints": [
     "static/css/main.d1057902.css",
-    "static/js/main.26b0108c.js"
+    "static/js/main.0aab51c7.js"
   ]
 }
