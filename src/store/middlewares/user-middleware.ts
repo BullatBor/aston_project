@@ -1,7 +1,7 @@
-import { createListenerMiddleware } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
+import { createListenerMiddleware } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
-import { setUser, logout } from '../auth/authSlice';
+import { setUser, logout } from "../auth/authSlice";
 
 export const listenerMiddleware = createListenerMiddleware();
 
@@ -15,6 +15,6 @@ listenerMiddleware.startListening({
 listenerMiddleware.startListening({
   actionCreator: logout,
   effect: () => {
-    toast.success('Вы вышли из системы');
+    toast.success("Вы вышли из системы");
   },
 });

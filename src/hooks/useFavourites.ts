@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { user } from "../store/auth/authSlice";
@@ -6,13 +6,18 @@ import { favouriteApi } from "../store/rtkQuery/favoritesApi";
 
 export const useFavourites = () => {
   const userInfo = useSelector(user);
-  const [isRemoveClick, setIsRemoveClick] = useState<boolean>(false);
+  const [isLoadTest, setIsLoadTest] = useState<boolean>(false);
 
   const {
     data: favouriteList = [],
     currentData,
     isLoading,
+    isFetching,
   } = favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+
+  useEffect(() => {
+    if (!isFetching) setIsLoadTest(isFetching);
+  }, [isFetching]);
 
   const hasInFavourite = (id: number) => {
     if (currentData) {
@@ -28,6 +33,7 @@ export const useFavourites = () => {
 
   const handleAddToFavourite = async (id: number) => {
     try {
+      setIsLoadTest(true);
       await addInFavourite({ email: userInfo?.email, id });
       toast.success("Успешно добавлено");
     } catch (e) {
@@ -37,7 +43,7 @@ export const useFavourites = () => {
 
   const handleRemoveFromFavourite = async (id: number) => {
     try {
-      setIsRemoveClick(true);
+      setIsLoadTest(true);
       await removeFavourite({ email: userInfo?.email, id });
       toast.success("Успешно удалено");
     } catch (e) {
@@ -47,10 +53,9 @@ export const useFavourites = () => {
 
   return {
     hasInFavourite,
-    isFetching: addResult.isLoading || removeResult.isLoading,
+    isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
     isLoading,
     handleAddToFavourite,
     handleRemoveFromFavourite,
-    isRemoveClick,
   };
 };
