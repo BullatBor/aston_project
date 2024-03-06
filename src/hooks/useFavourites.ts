@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useSelector } from 'react-redux';
-import { user } from '../store/auth/authSlice';
-import { favouriteApi } from '../store/rtkQuery/favoritesApi';
+import { useEffect, useMemo, useState } from "react";
+import toast from "react-hot-toast";
+import { useSelector } from "react-redux";
+import { user } from "../store/auth/authSlice";
+import { favouriteApi } from "../store/rtkQuery/favoritesApi";
 
 export const useFavourites = () => {
   const userInfo = useSelector(user);
@@ -30,9 +30,9 @@ export const useFavourites = () => {
     try {
       setIsLoadTest(true);
       await addInFavourite({ email: userInfo?.email, id });
-      toast.success('Успешно добавлено');
+      toast.success("Успешно добавлено");
     } catch (e) {
-      toast.error('Подождите...');
+      toast.error("Подождите...");
     }
   };
 
@@ -40,9 +40,9 @@ export const useFavourites = () => {
     try {
       setIsLoadTest(true);
       await removeFavourite({ email: userInfo?.email, id });
-      toast.success('Успешно удалено');
+      toast.success("Успешно удалено");
     } catch (e) {
-      toast.error('Подождите...');
+      toast.error("Подождите...");
     }
   };
 
@@ -55,11 +55,10 @@ export const useFavourites = () => {
     }),
     [
       hasInFavourite,
+      isFetching,
       isLoadTest,
-      removeResult.isLoading,
-      addResult.isLoading,
       handleAddToFavourite,
       handleRemoveFromFavourite,
-    ]
+    ],
   );
 };
