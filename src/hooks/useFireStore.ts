@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { isAuth, user } from "../store/auth/authSlice";
-import { favouriteApi } from "../store/rtkQuery/favoritesApi";
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { isAuth, user } from '../store/auth/authSlice';
+import { favouriteApi } from '../store/rtkQuery/favoritesApi';
 
 export const useFireStore = () => {
   const userInfo = useSelector(user);
@@ -10,7 +10,7 @@ export const useFireStore = () => {
 
   useEffect(() => {
     if (isLogged) trigger(userInfo?.email);
-  }, [isLogged]);
+  }, [isLogged, trigger, userInfo?.email]);
 
   return {
     isLoading,
