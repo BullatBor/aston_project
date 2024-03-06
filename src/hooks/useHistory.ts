@@ -1,14 +1,14 @@
-import { useEffect, useState } from 'react';
-import toast from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   changeSearhText,
   isAuth,
   searchText,
   user,
-} from '../store/auth/authSlice';
-import { historyApi } from '../store/rtkQuery/historyApi';
+} from "../store/auth/authSlice";
+import { historyApi } from "../store/rtkQuery/historyApi";
 
 export const useHistory = () => {
   const userInfo = useSelector(user);
@@ -45,10 +45,10 @@ export const useHistory = () => {
 
         navigate(`search/${text}`);
       } else {
-        toast.error('Поле не должно быть пустым');
+        toast.error("Поле не должно быть пустым");
       }
     } catch (e) {
-      toast.error('Подождите...');
+      toast.error("Подождите...");
     }
   };
 
@@ -57,9 +57,9 @@ export const useHistory = () => {
       setIsLoad(true);
       const searchQuery = { title, url };
       await removeHistory({ email: userInfo?.email, searchQuery });
-      toast.success('Успешно удалено');
+      toast.success("Успешно удалено");
     } catch (e) {
-      toast.error('Подождите...');
+      toast.error("Подождите...");
     }
   };
 
