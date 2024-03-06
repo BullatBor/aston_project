@@ -4,16 +4,16 @@ import {
   doc,
   getDoc,
   updateDoc,
-} from 'firebase/firestore';
-import { fireStore } from '../../firebase-config';
-import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
-import toast from 'react-hot-toast';
+} from "firebase/firestore";
+import { fireStore } from "../../firebase-config";
+import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
+import toast from "react-hot-toast";
 
 export const favouriteApi = createApi({
   baseQuery: fakeBaseQuery(),
-  reducerPath: 'favouriteApi',
+  reducerPath: "favouriteApi",
   refetchOnMountOrArgChange: true,
-  tagTypes: ['favourites'],
+  tagTypes: ["favourites"],
   endpoints: (build) => ({
     getAllFavourites: build.query<number[], string | null | undefined>({
       async queryFn(email) {
@@ -22,7 +22,7 @@ export const favouriteApi = createApi({
             return { data: [] };
           }
 
-          const userRef = doc(fireStore, 'users', email);
+          const userRef = doc(fireStore, "users", email);
           const user = await getDoc(userRef);
 
           const userData = user.data();
@@ -36,7 +36,7 @@ export const favouriteApi = createApi({
           return { error: e };
         }
       },
-      providesTags: ['favourites'],
+      providesTags: ["favourites"],
     }),
     addToFavourite: build.mutation({
       async queryFn(args: {
@@ -48,17 +48,17 @@ export const favouriteApi = createApi({
             return { data: [] };
           }
 
-          const userRef = doc(fireStore, 'users', args.email);
+          const userRef = doc(fireStore, "users", args.email);
           await updateDoc(userRef, {
             favourite: arrayUnion(args.id),
           });
           return { data: [args.id] };
         } catch (e) {
-          toast.error('что то пошло не так');
+          toast.error("что то пошло не так");
           return { error: e };
         }
       },
-      invalidatesTags: ['favourites'],
+      invalidatesTags: ["favourites"],
     }),
     removeFromFavourite: build.mutation({
       async queryFn(args: {
@@ -70,18 +70,18 @@ export const favouriteApi = createApi({
             return { data: [] };
           }
 
-          const userRef = doc(fireStore, 'users', args.email);
+          const userRef = doc(fireStore, "users", args.email);
 
           await updateDoc(userRef, {
             favourite: arrayRemove(args.id),
           });
           return { data: [args.id] };
         } catch (e) {
-          toast.error('что то пошло не так');
+          toast.error("что то пошло не так");
           return { error: e };
         }
       },
-      invalidatesTags: ['favourites'],
+      invalidatesTags: ["favourites"],
     }),
   }),
 });
