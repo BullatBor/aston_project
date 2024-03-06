@@ -8,11 +8,10 @@ export const useFavourites = () => {
   const userInfo = useSelector(user);
   const [isLoadTest, setIsLoadTest] = useState<boolean>(false);
 
-  const {
-    data: favouriteList = [],
-    isFetching,
-    isLoading,
-  } = favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+  const { data: favouriteList = [], isFetching } =
+    favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+
+  //в рамках интенсива, нет возможности обновлять один элемент базы.
 
   useEffect(() => {
     if (!isFetching) setIsLoadTest(isFetching);
@@ -51,14 +50,12 @@ export const useFavourites = () => {
     () => ({
       hasInFavourite,
       isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
-      isLoading: isLoading,
       handleAddToFavourite,
       handleRemoveFromFavourite,
     }),
     [
       hasInFavourite,
       isFetching,
-      isLoading,
       isLoadTest,
       handleAddToFavourite,
       handleRemoveFromFavourite,

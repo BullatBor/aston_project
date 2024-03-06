@@ -1,10 +1,10 @@
-import React, { memo, useState } from "react";
-import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
-import { useFavourites } from "../../../hooks/useFavourites";
-import { isAuth } from "../../../store/auth/authSlice";
-import Button from "../../elements/Button/Button";
-import Preloader from "../../elements/Preloader/Preloader";
+import React, { memo, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { useFavourites } from '../../../hooks/useFavourites';
+import { isAuth } from '../../../store/auth/authSlice';
+import Button from '../../elements/Button/Button';
+import Preloader from '../../elements/Preloader/Preloader';
 
 interface FavourButtonType {
   movieId: number;
@@ -28,7 +28,7 @@ export const FavouriteButton = memo(
         await handleAddToFavourite(id);
         setHas((prev) => !prev);
       } else {
-        toast.error("Чтобы продолжить надо авторизоваться");
+        toast.error('Чтобы продолжить надо авторизоваться');
       }
     };
 
@@ -37,18 +37,18 @@ export const FavouriteButton = memo(
         await handleRemoveFromFavourite(id);
         setHas((prev) => !prev);
       } else {
-        toast.error("Чтобы продолжить надо авторизоваться");
+        toast.error('Чтобы продолжить надо авторизоваться');
       }
     };
 
     if (isFavourPage) {
       return (
         <Button
-          variant="red"
+          variant='red'
           onClick={() => removeHandler(movieId)}
           disabled={isFetching}
         >
-          {isFetching ? <Preloader width={15} /> : "Удалить из избранного"}
+          {isFetching ? <Preloader width={15} /> : 'Удалить из избранного'}
         </Button>
       );
     }
@@ -57,22 +57,22 @@ export const FavouriteButton = memo(
       <>
         {isHas && isLogged ? (
           <Button
-            variant="red"
+            variant='red'
             onClick={() => removeHandler(movieId)}
             disabled={isFetching}
           >
-            {isFetching ? <Preloader width={15} /> : "Удалить из избранного"}
+            {isFetching ? <Preloader width={15} /> : 'Удалить из избранного'}
           </Button>
         ) : (
           <Button
-            variant="green"
+            variant='green'
             onClick={() => addFavoriteHandler(movieId)}
             disabled={isFetching}
           >
-            {isFetching ? <Preloader width={15} /> : "В избранное"}
+            {isFetching ? <Preloader width={15} /> : 'В избранное'}
           </Button>
         )}
       </>
     );
-  },
+  }
 );
