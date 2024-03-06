@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { user } from "../store/auth/authSlice";
@@ -8,21 +8,16 @@ export const useFavourites = () => {
   const userInfo = useSelector(user);
   const [isLoadTest, setIsLoadTest] = useState<boolean>(false);
 
-  const {
-    data: favouriteList = [],
-    currentData,
-    isLoading,
-    isFetching,
-  } = favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+  const { data: favouriteList = [], isFetching } =
+    favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+
+  //в рамках интенсива, нет возможности обновлять один элемент базы.
 
   useEffect(() => {
     if (!isFetching) setIsLoadTest(isFetching);
   }, [isFetching]);
 
   const hasInFavourite = (id: number) => {
-    if (currentData) {
-      return currentData.includes(id);
-    }
     return favouriteList.includes(id);
   };
 
@@ -51,11 +46,19 @@ export const useFavourites = () => {
     }
   };
 
-  return {
-    hasInFavourite,
-    isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
-    isLoading,
-    handleAddToFavourite,
-    handleRemoveFromFavourite,
-  };
+  return useMemo(
+    () => ({
+      hasInFavourite,
+      isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
+      handleAddToFavourite,
+      handleRemoveFromFavourite,
+    }),
+    [
+      hasInFavourite,
+      isFetching,
+      isLoadTest,
+      handleAddToFavourite,
+      handleRemoveFromFavourite,
+    ],
+  );
 };
