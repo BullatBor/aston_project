@@ -46,20 +46,13 @@ export const useFavourites = () => {
     }
   };
 
-  return useMemo(
-    () => ({
-      hasInFavourite,
-      isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
-      handleAddToFavourite,
-      handleRemoveFromFavourite,
-    }),
-    [
+  return
+    {
       hasInFavourite,
       addResult.isLoading,
       removeResult.isLoading,
       isLoadTest,
       handleAddToFavourite,
       handleRemoveFromFavourite,
-    ]
-  );
+    }
 };
