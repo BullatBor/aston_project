@@ -46,13 +46,10 @@ export const useFavourites = () => {
     }
   };
 
-  return
-    {
-      hasInFavourite,
-      addResult.isLoading,
-      removeResult.isLoading,
-      isLoadTest,
-      handleAddToFavourite,
-      handleRemoveFromFavourite,
-    }
+  return {
+    hasInFavourite,
+    isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
+    handleAddToFavourite,
+    handleRemoveFromFavourite,
+  };
 };
