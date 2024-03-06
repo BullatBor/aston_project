@@ -8,7 +8,6 @@ import {
 import { fireStore } from "../../firebase-config";
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import toast from "react-hot-toast";
-import { IHistory } from "../../models/IHistory";
 
 export const historyApi = createApi({
   baseQuery: fakeBaseQuery(),
@@ -16,7 +15,7 @@ export const historyApi = createApi({
   refetchOnMountOrArgChange: true,
   tagTypes: ["history"],
   endpoints: (build) => ({
-    getHistory: build.query<IHistory[], string | null | undefined>({
+    getHistory: build.query<string[], string | null | undefined>({
       async queryFn(email) {
         try {
           if (!email) {
@@ -42,7 +41,7 @@ export const historyApi = createApi({
     addToHistory: build.mutation({
       async queryFn(args: {
         email: string | null | undefined;
-        searchQuery: IHistory | null | undefined;
+        searchQuery: string | null | undefined;
       }) {
         try {
           if (!args.email) {
@@ -50,6 +49,7 @@ export const historyApi = createApi({
           }
 
           const userRef = doc(fireStore, "users", args.email);
+
           await updateDoc(userRef, {
             history: arrayUnion(args.searchQuery),
           });
@@ -64,7 +64,7 @@ export const historyApi = createApi({
     removeFromHistory: build.mutation({
       async queryFn(args: {
         email: string | null | undefined;
-        searchQuery: IHistory | undefined;
+        searchQuery: string | undefined;
       }) {
         try {
           if (!args.email) {

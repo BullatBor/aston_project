@@ -11,23 +11,21 @@ import { changeSearhText } from "../../../store/auth/authSlice";
 
 interface historyItemProps {
   title: string;
-  url: string;
 }
 
-export const HistoryItem: FC<historyItemProps> = ({ title, url }) => {
-  const navigate = useNavigate();
+export const HistoryItem: FC<historyItemProps> = ({ title }) => {
   const { theme } = useTheme();
-  const { handleRemoveFromHistory, isFetching } = useHistory();
+  const { handleRemoveFromHistory, isFetching, redirect } = useHistory();
   const dispatch = useDispatch();
 
   const handleItemClick = () => {
     dispatch(changeSearhText(title));
-    navigate(url);
+    redirect(title);
   };
 
   const handleRemoveClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation();
-    handleRemoveFromHistory(title, url);
+    handleRemoveFromHistory(title);
   };
 
   return (

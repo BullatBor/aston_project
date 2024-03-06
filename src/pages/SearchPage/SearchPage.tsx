@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import { movieApi } from "../../store/rtkQuery/movieApi";
 import MovieCard from "../../ui/components/MovieCard/MovieCard";
 import Preloader from "../../ui/elements/Preloader/Preloader";
@@ -7,7 +7,10 @@ import s from "./searchPage.module.css";
 import { EmptyTitle } from "../../ui/components/EmptyTitle/EmptyTitle";
 
 const SearchPage = () => {
-  const { query } = useParams();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+
+  const query = queryParams.get("searchText");
 
   if (!query) {
     return <div>Упс, что то пошло не так</div>;

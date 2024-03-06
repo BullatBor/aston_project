@@ -18,8 +18,8 @@ const UserHistory = () => {
       {searchHistory ? (
         searchHistory.length > 0 ? (
           <div className={s.items}>
-            {searchHistory.map((item) => (
-              <HistoryItem {...item} />
+            {searchHistory.map((item, index) => (
+              <HistoryItem key={index} title={item} />
             ))}
           </div>
         ) : (

@@ -14,8 +14,11 @@ export const useHistory = () => {
   const userInfo = useSelector(user);
   const isLogged = useSelector(isAuth);
   const navigate = useNavigate();
+
   const text = useSelector(searchText);
   const dispatch = useDispatch();
+  const searchParams = new URLSearchParams();
+
   const { isFetching } = historyApi.useGetHistoryQuery(userInfo?.email);
 
   const [isLoad, setIsLoad] = useState<boolean>(false);
@@ -33,17 +36,21 @@ export const useHistory = () => {
   const [removeHistory, removeResult] =
     historyApi.useRemoveFromHistoryMutation();
 
+  const redirect = (text: string) => {
+    searchParams.append("searchText", `${text}`);
+    navigate(`/search?${searchParams.toString()}`);
+  };
+
   const handleAddToHistory = async () => {
     try {
       if (text.length > 0) {
         if (isLogged) {
           setIsLoad(true);
-          const searchQuery = { title: text, url: `/search/${text}` };
+          const searchQuery = text;
           await addInHistory({ email: userInfo?.email, searchQuery });
           setIsLoad(false);
         }
-
-        navigate(`search/${text}`);
+        redirect(text);
       } else {
         toast.error("Поле не должно быть пустым");
       }
@@ -52,10 +59,10 @@ export const useHistory = () => {
     }
   };
 
-  const handleRemoveFromHistory = async (title: string, url: string) => {
+  const handleRemoveFromHistory = async (title: string) => {
     try {
       setIsLoad(true);
-      const searchQuery = { title, url };
+      const searchQuery = title;
       await removeHistory({ email: userInfo?.email, searchQuery });
       toast.success("Успешно удалено");
     } catch (e) {
@@ -69,5 +76,6 @@ export const useHistory = () => {
     handleRemoveFromHistory,
     searchText: text,
     setSearchText: ChangeText,
+    redirect,
   };
 };
