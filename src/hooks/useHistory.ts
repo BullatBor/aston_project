@@ -1,12 +1,18 @@
-import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { changeSearhText, searchText, user } from "../store/auth/authSlice";
-import { historyApi } from "../store/rtkQuery/historyApi";
+import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {
+  changeSearhText,
+  isAuth,
+  searchText,
+  user,
+} from '../store/auth/authSlice';
+import { historyApi } from '../store/rtkQuery/historyApi';
 
 export const useHistory = () => {
   const userInfo = useSelector(user);
+  const isLogged = useSelector(isAuth);
   const navigate = useNavigate();
   const text = useSelector(searchText);
   const dispatch = useDispatch();
@@ -29,17 +35,20 @@ export const useHistory = () => {
 
   const handleAddToHistory = async () => {
     try {
-      setIsLoad(true);
-      const searchQuery = { title: text, url: `/search/${text}` };
-
       if (text.length > 0) {
-        await addInHistory({ email: userInfo?.email, searchQuery });
+        if (isLogged) {
+          setIsLoad(true);
+          const searchQuery = { title: text, url: `/search/${text}` };
+          await addInHistory({ email: userInfo?.email, searchQuery });
+          setIsLoad(false);
+        }
+
         navigate(`search/${text}`);
       } else {
-        toast.error("Поле не должно быть пустым");
+        toast.error('Поле не должно быть пустым');
       }
     } catch (e) {
-      toast.error("Подождите...");
+      toast.error('Подождите...');
     }
   };
 
@@ -48,9 +57,9 @@ export const useHistory = () => {
       setIsLoad(true);
       const searchQuery = { title, url };
       await removeHistory({ email: userInfo?.email, searchQuery });
-      toast.success("Успешно удалено");
+      toast.success('Успешно удалено');
     } catch (e) {
-      toast.error("Подождите...");
+      toast.error('Подождите...');
     }
   };
 
