@@ -1,12 +1,12 @@
-import React, { FC } from 'react';
-import { useHistory } from '../../../hooks/useHistory';
-import { Button } from '../../elements/Button/Button';
-import Preloader from '../../elements/Preloader/Preloader';
-import s from './historyItem.module.css';
-import cn from 'classnames';
-import { useTheme } from '../../../context/ThemeContext';
-import { useDispatch } from 'react-redux';
-import { changeSearhText } from '../../../store/auth/authSlice';
+import React, { FC } from "react";
+import { useHistory } from "../../../hooks/useHistory";
+import { Button } from "../../elements/Button/Button";
+import Preloader from "../../elements/Preloader/Preloader";
+import s from "./historyItem.module.css";
+import cn from "classnames";
+import { useTheme } from "../../../context/ThemeContext";
+import { useDispatch } from "react-redux";
+import { changeSearhText } from "../../../store/auth/authSlice";
 
 interface historyItemProps {
   title: string;
@@ -29,7 +29,7 @@ export const HistoryItem: FC<historyItemProps> = ({ title }) => {
 
   return (
     <div
-      className={cn(s.wrapper, { [s.dark]: theme === 'dark' })}
+      className={cn(s.wrapper, { [s.dark]: theme === "dark" })}
       onClick={handleItemClick}
     >
       <div className={s.title}>
@@ -38,12 +38,12 @@ export const HistoryItem: FC<historyItemProps> = ({ title }) => {
       </div>
       <div>
         <Button
-          variant='red'
+          variant="red"
           className={s.btn}
           onClick={handleRemoveClick}
           disabled={isFetching}
         >
-          {isFetching ? <Preloader width={15} /> : 'Удалить'}
+          {isFetching ? <Preloader width={15} /> : "Удалить"}
         </Button>
       </div>
     </div>
