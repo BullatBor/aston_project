@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./authButtons.module.css";
-import Button from "../../elements/Button/Button";
+import { Button } from "../../elements/Button/Button";
 import { useSelector } from "react-redux";
 import { isLoading } from "../../../store/auth/authSlice";
 import Preloader from "../../elements/Preloader/Preloader";

@@ -1,6 +1,6 @@
 import React from "react";
 import { useTheme } from "../../../context/ThemeContext";
-import Button from "../../elements/Button/Button";
+import { Button } from "../../elements/Button/Button";
 import darkTheme from "../../../assets/icons/darkTheme.png";
 import lightTheme from "../../../assets/icons/lightTheme.png";
 import s from "./themeButton.module.css";

@@ -2,7 +2,7 @@ import React from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useHistory } from "../../../hooks/useHistory";
 import { useSuggest } from "../../../hooks/useSuggest";
-import Button from "../../elements/Button/Button";
+import { Button } from "../../elements/Button/Button";
 import { Input } from "../../elements/Input/Input";
 import Preloader from "../../elements/Preloader/Preloader";
 import { Suggest } from "../Suggest/Suggest";

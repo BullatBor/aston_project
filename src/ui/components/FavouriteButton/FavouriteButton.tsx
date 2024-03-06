@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 import { useFavourites } from "../../../hooks/useFavourites";
 import { isAuth } from "../../../store/auth/authSlice";
-import Button from "../../elements/Button/Button";
+import { Button } from "../../elements/Button/Button";
 import Preloader from "../../elements/Preloader/Preloader";
 
 interface FavourButtonType {

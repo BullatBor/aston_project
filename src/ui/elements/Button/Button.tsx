@@ -12,7 +12,7 @@ interface ButtonProps {
   disabled?: boolean;
 }
 
-const Button = ({
+export const Button = ({
   children,
   onClick,
   className,
@@ -49,5 +49,3 @@ Button.defaultProps = {
   type: undefined,
   disabled: false,
 };
-
-export default Button;
