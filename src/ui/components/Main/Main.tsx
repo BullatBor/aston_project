@@ -46,14 +46,7 @@ export const Main = () => {
               </WithAuthRequired>
             }
           />
-          <Route
-            path="search/:query?"
-            element={
-              <WithAuthRequired>
-                <SearchPage />
-              </WithAuthRequired>
-            }
-          />
+          <Route path="search/:query?" element={<SearchPage />} />
           <Route path="movie/:id?" element={<MoviePage />} />
         </Routes>
         <Toaster position="top-center" reverseOrder={false} />

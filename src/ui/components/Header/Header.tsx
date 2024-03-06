@@ -28,7 +28,7 @@ export const Header = () => {
             <img src={logo} alt="poster" />
           </div>
         </Link>
-        {isLogged && <Search />}
+        <Search />
       </div>
       <div className={s.auth}>{isLogged ? <AuthButtons /> : <AuthLinks />}</div>
       <div className={s.themeBtn}>
