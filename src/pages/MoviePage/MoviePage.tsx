@@ -6,10 +6,12 @@ import Preloader from "../../ui/elements/Preloader/Preloader";
 import { FavouriteButton } from "../../ui/components/FavouriteButton/FavouriteButton";
 import cn from "classnames";
 import { useTheme } from "../../context/ThemeContext";
+import { useFireStore } from "../../hooks/useFireStore";
 
 const MoviePage = () => {
   const { id } = useParams();
   const { theme } = useTheme();
+  const { isLoading } = useFireStore();
 
   if (!id) {
     return <div>Упс, что то пошло не так</div>;
@@ -18,7 +20,7 @@ const MoviePage = () => {
 
   return (
     <div className={s.wrapper}>
-      {movieInfo ? (
+      {movieInfo && !isLoading ? (
         <div
           className={cn(s.card, {
             [s.dark]: theme === "dark",

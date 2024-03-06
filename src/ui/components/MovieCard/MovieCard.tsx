@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 import { ICollection } from "../../../models/ICollection";
-import { FavouriteButton } from "../FavouriteButton/FavouriteButton";
 import s from "./movieCard.module.css";
 import cn from "classnames";
 import { useTheme } from "../../../context/ThemeContext";
@@ -61,9 +60,6 @@ const MovieCard = memo(
               <span className={s.descriptionTitle}>Краткое описание:</span>
               <span className={s.descriptionText}>{shortDescription}</span>
             </div>
-          </div>
-          <div className={s.buttons}>
-            <FavouriteButton movieId={id} />
           </div>
         </div>
       </div>
