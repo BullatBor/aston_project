@@ -1,9 +1,10 @@
-import React, { memo } from "react";
-import { useNavigate } from "react-router-dom";
-import { ICollection } from "../../../models/ICollection";
-import s from "./movieCard.module.css";
-import cn from "classnames";
-import { useTheme } from "../../../context/ThemeContext";
+import React, { memo } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ICollection } from '../../../models/ICollection';
+import s from './movieCard.module.css';
+import cn from 'classnames';
+import { useTheme } from '../../../context/ThemeContext';
+import { FavouriteButton } from '../FavouriteButton/FavouriteButton';
 
 const MovieCard = memo(
   ({
@@ -25,14 +26,14 @@ const MovieCard = memo(
     return (
       <div
         className={cn(s.wrapper, {
-          [s.dark]: theme === "dark",
-          [s.light]: theme === "light",
+          [s.dark]: theme === 'dark',
+          [s.light]: theme === 'light',
         })}
       >
         <div className={s.poster}>
           <img
             src={poster.url}
-            alt="poster"
+            alt='poster'
             onClick={() => movieLinkHandler(id)}
           />
         </div>
@@ -60,11 +61,14 @@ const MovieCard = memo(
               <span className={s.descriptionTitle}>Краткое описание:</span>
               <span className={s.descriptionText}>{shortDescription}</span>
             </div>
+            <div className={s.buttons}>
+              <FavouriteButton movieId={id} />
+            </div>
           </div>
         </div>
       </div>
     );
-  },
+  }
 );
 
 export default MovieCard;
