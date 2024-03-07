@@ -1,10 +1,10 @@
-import React from 'react';
-import { ICollection } from '../../models/ICollection';
-import { movieApi } from '../../store/rtkQuery/movieApi';
-import MovieCard from '../../ui/components/MovieCard/MovieCard';
-import Preloader from '../../ui/elements/Preloader/Preloader';
-import s from './mainPage.module.css';
-import { useFireStore } from '../../hooks/useFireStore';
+import React from "react";
+import { ICollection } from "../../models/ICollection";
+import { movieApi } from "../../store/rtkQuery/movieApi";
+import MovieCard from "../../ui/components/MovieCard/MovieCard";
+import Preloader from "../../ui/elements/Preloader/Preloader";
+import s from "./mainPage.module.css";
+import { useFireStore } from "../../hooks/useFireStore";
 
 export const MainPage = () => {
   const { data: movies } = movieApi.useGetMovieCollectionQuery(15);

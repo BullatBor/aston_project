@@ -1,11 +1,11 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { user } from '../../store/auth/authSlice';
-import { favouriteApi } from '../../store/rtkQuery/favoritesApi';
-import FavouriteMovieCard from '../../ui/components/FavouriteMovieCard/FavouriteMovieCard';
-import s from './favourite.module.css';
-import { EmptyTitle } from '../../ui/components/EmptyTitle/EmptyTitle';
-import Preloader from '../../ui/elements/Preloader/Preloader';
+import React from "react";
+import { useSelector } from "react-redux";
+import { user } from "../../store/auth/authSlice";
+import { favouriteApi } from "../../store/rtkQuery/favoritesApi";
+import FavouriteMovieCard from "../../ui/components/FavouriteMovieCard/FavouriteMovieCard";
+import s from "./favourite.module.css";
+import { EmptyTitle } from "../../ui/components/EmptyTitle/EmptyTitle";
+import Preloader from "../../ui/elements/Preloader/Preloader";
 
 const Favorites = () => {
   const userInfo = useSelector(user);
@@ -24,7 +24,7 @@ const Favorites = () => {
           })}
         </div>
       ) : (
-        <EmptyTitle title='Ничего нет' />
+        <EmptyTitle title="Ничего нет" />
       )}
     </div>
   );
