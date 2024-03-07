@@ -39,7 +39,7 @@
 
 - [x] Используем Modern Redux with Redux Toolkit: [store](src/store/store.ts).
 - [x] Используем слайсы: [userSlise](src\store\auth\authSlice.ts).
-- [] Есть хотя бы одна кастомная мидлвара: [user-middleware](src/store/middlewares/user-middleware.ts).
+- [x] Есть хотя бы одна кастомная мидлвара: [user-middleware](src/store/middlewares/user-middleware.ts).
 - [x] Используется RTK Query: [favouriteApi](src\store\rtkQuery\favoritesApi.ts), [movieApi](src\store\rtkQuery\movieApi.ts), [historyApi](src\store\rtkQuery\historyApi.ts).
 - [x] Используется Transforming Responses: [movieApi](src\store\rtkQuery\movieApi.ts).
 
