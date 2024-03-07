@@ -8,8 +8,11 @@ export const useFavourites = () => {
   const userInfo = useSelector(user);
   const [isLoadTest, setIsLoadTest] = useState<boolean>(false);
 
-  const { data: favouriteList = [], isFetching } =
-    favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
+  const {
+    data: favouriteList = [],
+    isFetching,
+    isLoading,
+  } = favouriteApi.useGetAllFavouritesQuery(userInfo?.email);
 
   //в рамках интенсива, нет возможности обновлять один элемент базы.
 
@@ -48,6 +51,7 @@ export const useFavourites = () => {
 
   return {
     hasInFavourite,
+    isLoading,
     isFetching: addResult.isLoading || removeResult.isLoading || isLoadTest,
     handleAddToFavourite,
     handleRemoveFromFavourite,

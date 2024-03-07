@@ -6,15 +6,16 @@ import Preloader from "../../ui/elements/Preloader/Preloader";
 import { FavouriteButton } from "../../ui/components/FavouriteButton/FavouriteButton";
 import cn from "classnames";
 import { useTheme } from "../../context/ThemeContext";
-import { useFireStore } from "../../hooks/useFireStore";
+import { useFavourites } from "../../hooks/useFavourites";
+import { ErrorText } from "../../ui/components/ErrorBoundary/ErrorBoundary";
 
 const MoviePage = () => {
   const { id } = useParams();
   const { theme } = useTheme();
-  const { isLoading } = useFireStore();
+  const { isLoading } = useFavourites();
 
   if (!id) {
-    return <div>Упс, что то пошло не так</div>;
+    return <ErrorText />;
   }
   const { data: movieInfo } = movieApi.useGetMovieQuery(parseInt(id));
 
