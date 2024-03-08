@@ -1,12 +1,12 @@
-import React from 'react';
-import { useDebounce } from '../../../hooks/useDebounce';
-import { useHistory } from '../../../hooks/useHistory';
-import { useSuggest } from '../../../hooks/useSuggest';
-import { Button } from '../../elements/Button/Button';
-import { Input } from '../../elements/Input/Input';
-import Preloader from '../../elements/Preloader/Preloader';
-import { Suggest } from '../Suggest/Suggest';
-import s from './search.module.css';
+import React from "react";
+import { useDebounce } from "../../../hooks/useDebounce";
+import { useHistory } from "../../../hooks/useHistory";
+import { useSuggest } from "../../../hooks/useSuggest";
+import { Button } from "../../elements/Button/Button";
+import { Input } from "../../elements/Input/Input";
+import Preloader from "../../elements/Preloader/Preloader";
+import { Suggest } from "../Suggest/Suggest";
+import s from "./search.module.css";
 
 export const Search = () => {
   const { handleAddToHistory, isFetching, searchText, SearchTextChanged } =
@@ -31,19 +31,19 @@ export const Search = () => {
     <div className={s.wrapper}>
       <form className={s.form} onSubmit={searchHandler}>
         <Input
-          placeholder='Поиск'
+          placeholder="Поиск"
           onChange={changeHandler}
           value={searchText}
           inputRef={inputRef}
           onFocus={onSearchFocus}
         />
         <Button
-          variant='blue'
+          variant="blue"
           className={s.searchBtn}
-          type='submit'
+          type="submit"
           disabled={isFetching}
         >
-          {isFetching ? <Preloader width={15} /> : 'Поиск'}
+          {isFetching ? <Preloader width={15} /> : "Поиск"}
         </Button>
       </form>
       {isSuggestVisible && (

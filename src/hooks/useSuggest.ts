@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
 
 export const useSuggest = () => {
   const suggestRef = useRef<null | HTMLDivElement>(null);
@@ -6,10 +6,10 @@ export const useSuggest = () => {
   const [isSuggestVisible, setIsSuggestVisible] = useState(false);
 
   useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener("click", handleClickOutside);
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener("click", handleClickOutside);
     };
   }, []);
 

@@ -1,17 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { auth } from '../firebase-config';
+import { useDispatch } from "react-redux";
+import { auth } from "../firebase-config";
 import {
   logout,
   setIsLoading,
   setStatus,
   setUser,
-} from '../store/auth/authSlice';
+} from "../store/auth/authSlice";
 import {
   fireBaseLogin,
   fireBaseLogout,
   fireBaseRegister,
-} from '../services/firebaseAuth';
-import { User } from 'firebase/auth';
+} from "../services/firebaseAuth";
+import { User } from "firebase/auth";
 
 export const useAuth = () => {
   const dispatch = useDispatch();
@@ -21,14 +21,14 @@ export const useAuth = () => {
       if (user) {
         dispatch(setUser(user));
       } else {
-        dispatch(setStatus('none'));
+        dispatch(setStatus("none"));
       }
     });
   };
 
   const registration = async (
     email: string,
-    password: string
+    password: string,
   ): Promise<boolean> => {
     dispatch(setIsLoading(true));
 
@@ -39,7 +39,7 @@ export const useAuth = () => {
       dispatch(setIsLoading(false));
       return true;
     } else {
-      dispatch(setStatus('none'));
+      dispatch(setStatus("none"));
       dispatch(setIsLoading(false));
       return false;
     }
@@ -55,7 +55,7 @@ export const useAuth = () => {
       dispatch(setIsLoading(false));
       return true;
     } else {
-      dispatch(setStatus('none'));
+      dispatch(setStatus("none"));
       dispatch(setIsLoading(false));
       return false;
     }
