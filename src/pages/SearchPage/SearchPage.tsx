@@ -5,19 +5,18 @@ import MovieCard from '../../ui/components/MovieCard/MovieCard';
 import Preloader from '../../ui/elements/Preloader/Preloader';
 import s from './searchPage.module.css';
 import { EmptyTitle } from '../../ui/components/EmptyTitle/EmptyTitle';
-import { useDispatch } from 'react-redux';
-import { changeSearhText } from '../../store/auth/authSlice';
+import { useHistory } from '../../hooks/useHistory';
 
 const SearchPage = () => {
   const location = useLocation();
-  const dispatch = useDispatch();
+  const { SearchTextChanged } = useHistory();
   const queryParams = new URLSearchParams(location.search);
 
   const query = queryParams.get('searchText');
 
   useEffect(() => {
     if (query) {
-      dispatch(changeSearhText(query));
+      SearchTextChanged(query);
     }
   }, []);
 

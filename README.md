@@ -51,6 +51,7 @@
 - [x] Использвуется Firebase: [auth](src/hooks/useAuth.ts), [favourite](src/hooks/useFavourites.ts), [history](src/hooks/useHistory.ts)
 - [x] Настроен CI/CD: [actions.yml](.github\workflows\checks.yml)
 - [x] Подключен storybook и созданы два, три сториса с controls: [storyBook](src/ui/elements/Button/Button.stories.tsx)
+- [x] Связь UI и бизнес-логики построена через события.
 
 ---
 
