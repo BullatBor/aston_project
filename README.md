@@ -25,23 +25,23 @@
 #### React
 
 - [x] Пишем функциональные компоненты c хуками: [components](src/ui/components), [pages](src/pages).
-- [x] Есть разделение на [умные](src/pages/MainPage/MainPage.tsx) и [глупые](src\ui\elements\Button\Button.tsx) компоненты.
+- [x] Есть разделение на [умные](src/pages/MainPage/MainPage.tsx) и [глупые](src/ui/elements/Button/Button.tsx) компоненты.
 - [x] Есть рендеринг [списков](src/pages/MainPage/MainPage.tsx).
-- [x] Реализована хотя бы одна [форма](src\ui\components\AuthButtons\AuthButtons.tsx).
-- [x] Есть применение Контекст API: [themeContext](src\context\ThemeContext.ts).
-- [x] Есть применение предохранителя: [ErrorBoundary](src/app.tsx), [Fallback](src\ui\components\ErrorBoundary\ErrorBoundary.tsx).
+- [x] Реализована хотя бы одна [форма](src/ui/components/AuthButtons/AuthButtons.tsx).
+- [x] Есть применение Контекст API: [themeContext](src/context/ThemeContext.ts).
+- [x] Есть применение предохранителя: [ErrorBoundary](src/app.tsx), [Fallback](src/ui/components/ErrorBoundary/ErrorBoundary.tsx).
 - [x] Есть хотя бы один кастомный хук: [useAuth](src/hooks/useAuth.ts), [useDebounce](src/hooks/useDebounce.ts), [useFavourites](src/hooks/useFavourites.ts),[useHistory](src/hooks/useHistory.ts),[useSuggest](src/hooks/useSuggest.ts).
-- [x] Хотя бы несколько компонентов используют PropTypes: [Button](src\ui\elements\Button\Button.tsx), [AuthForm](src\ui\components\AuthForm\AuthForm.tsx), [Preloader](src\ui\elements\Preloader\Preloader.tsx).
-- [x] Поиск не должен триггерить много запросов к серверу ([debounce](src\ui\components\Search\Search.tsx), [useDebounce](src/hooks/useDebounce.ts)).
-- [x] Есть применение [lazy + Suspense](src\ui\components\Main\Main.tsx).
+- [x] Хотя бы несколько компонентов используют PropTypes: [Button](src/ui/elements/Button/Button.tsx), [AuthForm](src/ui/components/AuthForm/AuthForm.tsx), [Preloader](src/ui/elements/Preloader/Preloader.tsx).
+- [x] Поиск не должен триггерить много запросов к серверу ([debounce](src/ui/components/Search/Search.tsx), [useDebounce](src/hooks/useDebounce.ts)).
+- [x] Есть применение [lazy + Suspense](src/ui/components/Main/Main.tsx).
 
 #### Redux
 
 - [x] Используем Modern Redux with Redux Toolkit: [store](src/store/store.ts).
-- [x] Используем слайсы: [userSlise](src\store\auth\authSlice.ts).
+- [x] Используем слайсы: [userSlise](src/store/auth/authSlice.ts).
 - [x] Есть хотя бы одна кастомная мидлвара: [user-middleware](src/store/middlewares/user-middleware.ts).
-- [x] Используется RTK Query: [favouriteApi](src\store\rtkQuery\favoritesApi.ts), [movieApi](src\store\rtkQuery\movieApi.ts), [historyApi](src\store\rtkQuery\historyApi.ts).
-- [x] Используется Transforming Responses: [movieApi](src\store\rtkQuery\movieApi.ts).
+- [x] Используется RTK Query: [favouriteApi](src/store/rtkQuery/favoritesApi.ts), [movieApi](src/store/rtkQuery/movieApi.ts), [historyApi](src/store/rtkQuery/historyApi.ts).
+- [x] Используется Transforming Responses: [movieApi](src/tore/rtkQuery/movieApi.ts).
 
 ---
 
@@ -49,7 +49,7 @@
 
 - [x] Используется TypeScript
 - [x] Использвуется Firebase: [auth](src/hooks/useAuth.ts), [favourite](src/hooks/useFavourites.ts), [history](src/hooks/useHistory.ts)
-- [x] Настроен CI/CD: [actions.yml](.github\workflows\checks.yml)
+- [x] Настроен CI/CD: [actions.yml](.github/workflows/checks.yml)
 - [x] Подключен storybook и созданы два, три сториса с controls: [storyBook](src/ui/elements/Button/Button.stories.tsx)
 - [x] Связь UI и бизнес-логики построена через события.
 
