@@ -1,12 +1,38 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import debounce from "lodash.debounce";
 import { movieApi } from "../store/rtkQuery/movieApi";
 import { useSelector } from "react-redux";
 import { searchText } from "../store/auth/authSlice";
 
 export const useDebounce = () => {
+  const suggestRef = useRef<null | HTMLDivElement>(null);
+  const inputRef = useRef<null | HTMLInputElement>(null);
+  const [isSuggestVisible, setIsSuggestVisible] = useState(false);
   const [trigger, { currentData, isLoading, isFetching }] =
     movieApi.useLazySearchMovieQuery();
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleClickOutside = (e: MouseEvent) => {
+    if (
+      suggestRef.current &&
+      !suggestRef.current.contains(e.target as Element) &&
+      e.target !== inputRef.current
+    ) {
+      setIsSuggestVisible(false);
+    }
+  };
+
+  const onSearchFocus = () => {
+    setIsSuggestVisible(true);
+    trigger({ name: "", limit: 5 });
+  };
 
   const text = useSelector(searchText);
 
@@ -14,7 +40,7 @@ export const useDebounce = () => {
     () =>
       debounce(
         (userInput: string) => trigger({ name: userInput, limit: 5 }),
-        2000,
+        1500,
       ),
     [trigger],
   );
@@ -33,5 +59,10 @@ export const useDebounce = () => {
     handleInputChange,
     isLoading: isLoading || isFetching,
     currentData,
+    suggestHided: setIsSuggestVisible,
+    isSuggestVisible,
+    onSearchFocus,
+    suggestRef,
+    inputRef,
   };
 };
