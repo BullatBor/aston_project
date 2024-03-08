@@ -5,18 +5,24 @@ import s from "./suggestItem.module.css";
 import cn from "classnames";
 import { useTheme } from "../../../../context/ThemeContext";
 
-export const SuggestItem: FC<ICollection> = ({
+interface ISuggestItemProps extends ICollection {
+  suggestHided: (isHide: boolean) => void;
+}
+
+export const SuggestItem: FC<ISuggestItemProps> = ({
   name,
   poster,
   year,
   rating,
   id,
+  suggestHided,
 }) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
 
   const itemHandler = () => {
     navigate(`/movie/${id}`);
+    suggestHided(false);
   };
 
   return (
