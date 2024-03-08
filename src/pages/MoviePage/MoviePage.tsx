@@ -1,13 +1,13 @@
-import React from "react";
-import s from "./moviePage.module.css";
-import { useParams } from "react-router-dom";
-import { movieApi } from "../../store/rtkQuery/movieApi";
-import Preloader from "../../ui/elements/Preloader/Preloader";
-import { FavouriteButton } from "../../ui/components/FavouriteButton/FavouriteButton";
-import cn from "classnames";
-import { useTheme } from "../../context/ThemeContext";
-import { useFavourites } from "../../hooks/useFavourites";
-import { ErrorText } from "../../ui/components/ErrorBoundary/ErrorBoundary";
+import React from 'react';
+import s from './moviePage.module.css';
+import { useParams } from 'react-router-dom';
+import { movieApi } from '../../store/rtkQuery/movieApi';
+import Preloader from '../../ui/elements/Preloader/Preloader';
+import { FavouriteButton } from '../../ui/components/FavouriteButton/FavouriteButton';
+import cn from 'classnames';
+import { useTheme } from '../../context/ThemeContext';
+import { useFavourites } from '../../hooks/useFavourites';
+import { ErrorText } from '../../ui/components/ErrorBoundary/ErrorBoundary';
 
 const MoviePage = () => {
   const { id } = useParams();
@@ -17,20 +17,22 @@ const MoviePage = () => {
   if (!id) {
     return <ErrorText />;
   }
-  const { data: movieInfo } = movieApi.useGetMovieQuery(parseInt(id));
+  const { data: movieInfo, isFetching: isLoad } = movieApi.useGetMovieQuery(
+    parseInt(id)
+  );
 
   return (
     <div className={s.wrapper}>
-      {movieInfo && !isLoading ? (
+      {movieInfo && !isLoading && !isLoad ? (
         <div
           className={cn(s.card, {
-            [s.dark]: theme === "dark",
-            [s.light]: theme === "light",
+            [s.dark]: theme === 'dark',
+            [s.light]: theme === 'light',
           })}
         >
           <div className={s.main}>
             <div className={s.leftPart}>
-              <img src={movieInfo.poster.url} alt="poster" />
+              <img src={movieInfo.poster.url} alt='poster' />
               <div className={s.infoUnderLogo}>
                 <div className={s.otherInfo}>
                   <div className={s.descriptTitle}>Жанр:</div>
