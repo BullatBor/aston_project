@@ -18,7 +18,10 @@ const SearchPage = () => {
     if (query) {
       SearchTextChanged(query);
     }
-  });
+
+    // Без пустого массива инпут перестает меняться
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!query) {
     return <div>Упс, что то пошло не так</div>;
