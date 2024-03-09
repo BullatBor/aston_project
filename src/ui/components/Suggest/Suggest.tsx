@@ -1,12 +1,12 @@
-import { FC, LegacyRef, memo } from 'react';
-import { ICollection } from '../../../models/ICollection';
-import Preloader from '../../elements/Preloader/Preloader';
-import s from './Suggest.module.css';
-import { SuggestItem } from './SuggestItem/SuggestItem';
-import cn from 'classnames';
-import { useTheme } from '../../../context/ThemeContext';
-import { EmptyTitle } from '../EmptyTitle/EmptyTitle';
-import { FixedSizeList as List } from 'react-window';
+import { FC, LegacyRef, memo } from "react";
+import { ICollection } from "../../../models/ICollection";
+import s from "./Suggest.module.css";
+import { SuggestItem } from "./SuggestItem/SuggestItem";
+import cn from "classnames";
+import { useTheme } from "../../../context/ThemeContext";
+import { EmptyTitle } from "../EmptyTitle/EmptyTitle";
+import { FixedSizeList as List } from "react-window";
+import Preloader from "../../elements/Preloader/Preloader";
 
 interface SuggestProps {
   movies: ICollection[] | null | undefined;
@@ -21,20 +21,21 @@ export const Suggest: FC<SuggestProps> = memo(
     return (
       <div
         className={cn(s.wrapper, {
-          [s.dark]: theme === 'dark',
-          [s.light]: theme === 'light',
+          [s.dark]: theme === "dark",
+          [s.light]: theme === "light",
         })}
         ref={suggestRef}
       >
         {movies ? (
           movies.length > 0 ? (
             <List
-              height={100}
+              height={300}
               itemCount={movies.length}
-              itemSize={35}
-              width={200}
+              itemSize={80}
+              width={400}
+              className={s.list}
             >
-              {({ index, style }) => (
+              {({ index }) => (
                 <SuggestItem
                   key={movies[index].id}
                   {...movies[index]}
@@ -43,7 +44,7 @@ export const Suggest: FC<SuggestProps> = memo(
               )}
             </List>
           ) : (
-            <EmptyTitle title='Ничего не нашлось' classNames={s.emptyTitle} />
+            <EmptyTitle title="Ничего не нашлось" classNames={s.emptyTitle} />
           )
         ) : (
           <div className={s.preloader}>
@@ -52,5 +53,5 @@ export const Suggest: FC<SuggestProps> = memo(
         )}
       </div>
     );
-  }
+  },
 );
