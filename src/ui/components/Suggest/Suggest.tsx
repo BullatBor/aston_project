@@ -1,11 +1,12 @@
-import React, { FC, LegacyRef, memo } from "react";
+import { FC, LegacyRef, memo } from "react";
 import { ICollection } from "../../../models/ICollection";
-import Preloader from "../../elements/Preloader/Preloader";
 import s from "./Suggest.module.css";
 import { SuggestItem } from "./SuggestItem/SuggestItem";
 import cn from "classnames";
 import { useTheme } from "../../../context/ThemeContext";
 import { EmptyTitle } from "../EmptyTitle/EmptyTitle";
+import { FixedSizeList as List } from "react-window";
+import Preloader from "../../elements/Preloader/Preloader";
 
 interface SuggestProps {
   movies: ICollection[] | null | undefined;
@@ -27,13 +28,21 @@ export const Suggest: FC<SuggestProps> = memo(
       >
         {movies ? (
           movies.length > 0 ? (
-            movies.map((item) => (
-              <SuggestItem
-                key={item.id}
-                {...item}
-                suggestHided={suggestHided}
-              />
-            ))
+            <List
+              height={300}
+              itemCount={movies.length}
+              itemSize={80}
+              width={400}
+              className={s.list}
+            >
+              {({ index }) => (
+                <SuggestItem
+                  key={movies[index].id}
+                  {...movies[index]}
+                  suggestHided={suggestHided}
+                />
+              )}
+            </List>
           ) : (
             <EmptyTitle title="Ничего не нашлось" classNames={s.emptyTitle} />
           )

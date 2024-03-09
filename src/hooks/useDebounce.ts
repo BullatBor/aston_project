@@ -11,6 +11,8 @@ export const useDebounce = () => {
   const [trigger, { currentData, isLoading, isFetching }] =
     movieApi.useLazySearchMovieQuery();
 
+  const text = useSelector(searchText);
+
   useEffect(() => {
     document.addEventListener("click", handleClickOutside);
 
@@ -31,10 +33,8 @@ export const useDebounce = () => {
 
   const onSearchFocus = () => {
     setIsSuggestVisible(true);
-    trigger({ name: "", limit: 5 });
+    trigger({ name: text, limit: 5 });
   };
-
-  const text = useSelector(searchText);
 
   const debouncedChangeHandler = useMemo(
     () =>
