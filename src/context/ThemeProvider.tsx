@@ -10,13 +10,13 @@ type Theme = "light" | "dark";
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setTheme] = useState<Theme>("dark");
 
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-  };
-
   const contextValue = useMemo(() => {
+    const toggleTheme = () => {
+      setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
+    };
+
     return { theme, toggleTheme };
-  }, [theme, toggleTheme]);
+  }, [theme]);
 
   return (
     <AppThemeContext.Provider value={contextValue}>

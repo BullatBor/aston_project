@@ -1,21 +1,25 @@
-import React from "react";
+import React, { memo } from "react";
 import { useDebounce } from "../../../hooks/useDebounce";
 import { useHistory } from "../../../hooks/useHistory";
-import { useSuggest } from "../../../hooks/useSuggest";
 import { Button } from "../../elements/Button/Button";
 import { Input } from "../../elements/Input/Input";
 import Preloader from "../../elements/Preloader/Preloader";
 import { Suggest } from "../Suggest/Suggest";
 import s from "./search.module.css";
 
-export const Search = () => {
+export const Search = memo(() => {
   const { handleAddToHistory, isFetching, searchText, SearchTextChanged } =
     useHistory();
 
-  const { isSuggestVisible, onSearchFocus, suggestRef, inputRef } =
-    useSuggest();
-
-  const { handleInputChange, currentData } = useDebounce();
+  const {
+    handleInputChange,
+    currentData,
+    isSuggestVisible,
+    onSearchFocus,
+    suggestHided,
+    suggestRef,
+    inputRef,
+  } = useDebounce();
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     SearchTextChanged(e.target.value);
@@ -47,8 +51,12 @@ export const Search = () => {
         </Button>
       </form>
       {isSuggestVisible && (
-        <Suggest movies={currentData} suggestRef={suggestRef} />
+        <Suggest
+          movies={currentData}
+          suggestRef={suggestRef}
+          suggestHided={suggestHided}
+        />
       )}
     </div>
   );
-};
+});
