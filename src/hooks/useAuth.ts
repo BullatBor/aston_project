@@ -45,7 +45,10 @@ export const useAuth = () => {
     }
   };
 
-  const login = async (email: string, password: string): Promise<boolean> => {
+  const userAuthed = async (
+    email: string,
+    password: string,
+  ): Promise<boolean> => {
     dispatch(setIsLoading(true));
 
     const user = await fireBaseLogin(email, password);
@@ -71,7 +74,7 @@ export const useAuth = () => {
   return {
     reAuth,
     registration,
-    login,
+    userAuthed,
     userLogout,
   };
 };

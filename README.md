@@ -52,8 +52,8 @@
 - [x] Настроен CI/CD: [actions.yml](.github/workflows/checks.yml)
 - [x] Подключен storybook и созданы два, три сториса с controls: [storyBook](src/ui/elements/Button/Button.stories.tsx)
 - [x] Связь UI и бизнес-логики построена через события.
-- [x] Cвязь UI и бизнес-логики построена не через команды, а через события. [logout](src/ui/components/AuthButtons/AuthButtons.tsx)
-- [x] Реализована виртуализация списков [list](src/ui/components/Suggest/Suggest.tsx)
+- [x] Cвязь UI и бизнес-логики построена не через команды, а через события. [logout](src/ui/components/AuthButtons/AuthButtons.tsx). [FavouriteButton](src/ui/components/FavouriteButton/FavouriteButton.tsx). [signIn](src/pages/SignIn/SignIn.tsx). Добавление в избранное, Выход и аторизация, заданы в прошедшем времени, и нет определенной команды.
+- [x] Реализована виртуализация списков [list](src/ui/components/Suggest/Suggest.tsx). Использовалась библиотека react-window, результаты обернуты в компонент <List> от "react-window", в панели разработчика видно что отрисовывается видимые элементы.
 
 ---
 

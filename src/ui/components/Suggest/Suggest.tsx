@@ -35,11 +35,12 @@ export const Suggest: FC<SuggestProps> = memo(
               width={400}
               className={s.list}
             >
-              {({ index }) => (
+              {({ index, style }) => (
                 <SuggestItem
                   key={movies[index].id}
                   {...movies[index]}
                   suggestHided={suggestHided}
+                  style={style}
                 />
               )}
             </List>

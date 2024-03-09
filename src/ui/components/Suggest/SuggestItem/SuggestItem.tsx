@@ -7,6 +7,7 @@ import { useTheme } from "../../../../context/ThemeContext";
 
 interface ISuggestItemProps extends ICollection {
   suggestHided: (isHide: boolean) => void;
+  style: React.CSSProperties;
 }
 
 export const SuggestItem: FC<ISuggestItemProps> = ({
@@ -16,6 +17,7 @@ export const SuggestItem: FC<ISuggestItemProps> = ({
   rating,
   id,
   suggestHided,
+  style,
 }) => {
   const navigate = useNavigate();
   const { theme } = useTheme();
@@ -27,6 +29,7 @@ export const SuggestItem: FC<ISuggestItemProps> = ({
 
   return (
     <div
+      style={style}
       className={cn(s.wrapper, {
         [s.dark]: theme === "dark",
         [s.light]: theme === "light",

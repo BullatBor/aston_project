@@ -33,13 +33,13 @@ export const useDebounce = () => {
 
   const onSearchFocus = () => {
     setIsSuggestVisible(true);
-    trigger({ name: text, limit: 5 });
+    trigger({ name: text, limit: 15 });
   };
 
   const debouncedChangeHandler = useMemo(
     () =>
       debounce(
-        (userInput: string) => trigger({ name: userInput, limit: 5 }),
+        (userInput: string) => trigger({ name: userInput, limit: 15 }),
         1500,
       ),
     [trigger],

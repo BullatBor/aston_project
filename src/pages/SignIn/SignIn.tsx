@@ -5,11 +5,11 @@ import AuthForm from "../../ui/components/AuthForm/AuthForm";
 import s from "./signIn.module.css";
 
 const SignIn = () => {
-  const { login } = useAuth();
+  const { userAuthed } = useAuth();
   const navigate = useNavigate();
 
   const onSubmitLogin = async (email: string, password: string) => {
-    if (await login(email, password)) {
+    if (await userAuthed(email, password)) {
       navigate("/");
     }
   };
