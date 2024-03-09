@@ -23,7 +23,7 @@ export const Search = memo(() => {
 
   const changeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     SearchTextChanged(e.target.value);
-    handleInputChange();
+    handleInputChange(e.target.value);
   };
 
   const searchHandler = (event: React.FormEvent<HTMLFormElement>) => {

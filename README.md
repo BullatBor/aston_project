@@ -52,6 +52,8 @@
 - [x] Настроен CI/CD: [actions.yml](.github/workflows/checks.yml)
 - [x] Подключен storybook и созданы два, три сториса с controls: [storyBook](src/ui/elements/Button/Button.stories.tsx)
 - [x] Связь UI и бизнес-логики построена через события.
+- [x] Cвязь UI и бизнес-логики построена не через команды, а через события. [logout](src/ui/components/AuthButtons/AuthButtons.tsx)
+- [x] Реализована виртуализация списков [list](src/ui/components/Suggest/Suggest.tsx)
 
 ---
 
@@ -60,6 +62,7 @@
 - classnames для удобства работы с css modules
 - formik и yup для валидации данных [формы](src/ui/components/AuthForm/AuthForm.tsx)
 - lodash.debounce для задержки поиска фильмов [debounce](src/hooks/useDebounce.ts)
+- react-window для виртуализации списка [suggest](src/ui/components/Suggest/Suggest.tsx)
 
 ---
 

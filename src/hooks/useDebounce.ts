@@ -51,8 +51,8 @@ export const useDebounce = () => {
     };
   }, [debouncedChangeHandler]);
 
-  function handleInputChange() {
-    debouncedChangeHandler(text);
+  function handleInputChange(searchText: string) {
+    debouncedChangeHandler(searchText);
   }
 
   return {

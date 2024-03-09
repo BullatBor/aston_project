@@ -12,7 +12,7 @@ export const AuthButtons = () => {
   const navigate = useNavigate();
   const { userLogout } = useAuth();
 
-  const logoutHandler = async () => {
+  const logoutHandler = () => {
     userLogout();
   };
 
